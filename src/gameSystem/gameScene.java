@@ -50,8 +50,8 @@ public class gameScene {
 
         backgroundScene = new AnchorPane();
         backgroundScene.maxHeight(400);
-        backgroundScene.maxWidth(750);
-        backgroundScene.setPrefSize(400,750);
+        backgroundScene.maxWidth(800);
+        backgroundScene.setPrefSize(400,800);
 
         //pos Bottone Pausa
         AnchorPane.setTopAnchor(pauseButton,10.0);
@@ -66,16 +66,24 @@ public class gameScene {
         AnchorPane.setLeftAnchor(difficultyLabel,200.0);
 
 
-        Image backgroundImageURL= new Image(new File(IMAGES_PATH + "iKogsKW.png").toURI().toString());
+        Image backgroundImageURL= new Image(new File(IMAGES_PATH + "iKogsKW.png").toURI().toString(),350,500,true,true,false);
         backgroundImage = new ImageView(backgroundImageURL);
+
+        Scene scene=new Scene(backgroundScene, 350,500);
 
         //pos Image
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
 
-        backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage);
+        frog f=new frog(IMAGES_PATH+"froggerUp",scene);
+        AnchorPane.setTopAnchor(f, 40.0);
+
+        backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage,f);
 
 
-        primaryStage.setScene(new Scene(backgroundScene, 384,580));
+
+
+
+        primaryStage.setScene(scene);
 
 
         pauseButton.setOnAction(e->{
