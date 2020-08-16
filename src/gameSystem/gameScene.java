@@ -74,14 +74,27 @@ public class gameScene {
         //pos Image
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
 
-        frog f=new frog(IMAGES_PATH+"froggerUp",scene);
-        AnchorPane.setTopAnchor(f, 40.0);
+        frog f=new frog(IMAGES_PATH+"froggerUp.png",scene);
+
+
 
         backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage,f);
 
+        //tronchi
+        Log firstLog3= new Log(IMAGES_PATH + "log3.png", 70, 300, 84, 1.5);
+        Log firstLog4 = new Log(IMAGES_PATH + "log3.png", 70, 300, 177, -1.5);
+        Log firstLog5 = new Log(IMAGES_PATH + "log3.png", 70, 300, 146, 2.5);
+
+        backgroundScene.getChildren().addAll(firstLog3,firstLog4,firstLog5);
+
+        //macchine
+
+        Vehicle car1 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 300, 492, 1.5);
+        Vehicle truck1 = new Vehicle(IMAGES_PATH + "truck1Left.png", 80, 210,488, 1.3);
+        Vehicle bigtruck1 = new Vehicle(IMAGES_PATH + "truck2Right.png", 130, 75,488, 1.3);
 
 
-
+        backgroundScene.getChildren().addAll(car1,truck1,bigtruck1);
 
         primaryStage.setScene(scene);
 
