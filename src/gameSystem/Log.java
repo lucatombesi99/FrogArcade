@@ -5,9 +5,8 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 
-import static gameSystem.gameScene.IMAGES_PATH;
 
-public class Log extends entity {
+public class Log extends Entity {
 
     private double speed;
 

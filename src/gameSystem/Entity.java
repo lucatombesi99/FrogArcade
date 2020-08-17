@@ -3,7 +3,7 @@ package gameSystem;
 
 import javafx.scene.image.ImageView;
 
-public abstract class entity extends ImageView {
+public abstract class Entity extends ImageView {
 
 
     public void move(double dx, double dy) {

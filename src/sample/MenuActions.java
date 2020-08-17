@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class menuActions {
+public class MenuActions {
    static String path ="src\\sample\\menuTheme.mp3";
    static Media media= new Media(new File(path).toURI().toString());
    static MediaPlayer mediaPlayer=new MediaPlayer(media);

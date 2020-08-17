@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 //ricorda di dare gli ID alle componenti
 
@@ -44,22 +42,22 @@ public class Controller {
     public void audioButtonClicked(ActionEvent event) throws IOException{
         if(autoPlay) {
             autoPlay=false;
-            menuActions.pause();
+            MenuActions.pause();
         } else {
             autoPlay=true;
-            menuActions.play();
+            MenuActions.play();
         }
 
     }
     public void scoreButtonClicked(ActionEvent event){
-        menuActions.scoreRecord();
+        MenuActions.scoreRecord();
 
     }
 
 
     public void newGameButtonClicked(ActionEvent event) throws IOException {
 
-        menuActions.stop();
+        MenuActions.stop();
         gameScene g= new gameScene();
       String choiceBoxValue= difficultyBox.getValue().toString();
    //selectedRadioButton = (RadioMenuItem) difficulty.getSelectedToggle();

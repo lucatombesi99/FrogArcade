@@ -9,7 +9,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class pauseClass {
+public class PauseClass {
 
     private static boolean autoPlay=true;
 

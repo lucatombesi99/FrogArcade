@@ -74,33 +74,35 @@ public class gameScene {
         //pos Image
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
 
-        frog f=new frog(IMAGES_PATH+"froggerUp.png",scene);
+        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene);
 
 
 
         backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage,f);
 
         //tronchi
-        Log firstLog3= new Log(IMAGES_PATH + "log3.png", 70, 300, 84, 1.5);
-        Log firstLog4 = new Log(IMAGES_PATH + "log3.png", 70, 300, 177, -1.5);
-        Log firstLog5 = new Log(IMAGES_PATH + "log3.png", 70, 300, 146, 2.5);
-
-        backgroundScene.getChildren().addAll(firstLog3,firstLog4,firstLog5);
+        Log firstLog1= new Log(IMAGES_PATH + "log3.png", 70, 300, 138, 1.5);
+        Log firstLog2 = new Log(IMAGES_PATH + "log2.png", 90, 250, 170, -1.5);
+        Log firstLog3 = new Log(IMAGES_PATH + "log3.png", 70, 200, 202, 2.5);
+        Log firstLog4 = new Log(IMAGES_PATH + "log2.png", 90, 150, 234, -2.5);
+        Log firstLog5 = new Log(IMAGES_PATH + "log3.png", 70, 100, 266, 2.5);
+        backgroundScene.getChildren().addAll(firstLog1,firstLog2,firstLog3,firstLog4,firstLog5);
 
         //macchine
 
-        Vehicle car1 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 300, 492, 1.5);
-        Vehicle truck1 = new Vehicle(IMAGES_PATH + "truck1Left.png", 80, 210,488, 1.3);
-        Vehicle bigtruck1 = new Vehicle(IMAGES_PATH + "truck2Right.png", 130, 75,488, 1.3);
+        Vehicle car1 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 300, 319, -1.7);
+        Vehicle truck1 = new Vehicle(IMAGES_PATH + "truck1Left.png", 60, 210,349, -1.3);
+        Vehicle car2 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 150, 381, -1.5);
+        Vehicle bigTruck1 = new Vehicle(IMAGES_PATH + "truck2Right.png", 100, 75,413, 1.3);
+        Vehicle car3 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 250, 445, -1.5);
 
-
-        backgroundScene.getChildren().addAll(car1,truck1,bigtruck1);
+        backgroundScene.getChildren().addAll(car1,car2,car3,truck1,bigTruck1);
 
         primaryStage.setScene(scene);
 
 
         pauseButton.setOnAction(e->{
-            pauseClass.pause(mediaPlayer);
+            PauseClass.pause(mediaPlayer);
         });
 
     }
