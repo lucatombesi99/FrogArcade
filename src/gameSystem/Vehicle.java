@@ -18,21 +18,17 @@ public class Vehicle extends Entity {
         setY(yPos);
         this.speed= speed;
 
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                move(speed , 0);
-                if (getX() > 600 && speed>0)
-                    setX(-180);
-                if (getX() < -50 && speed<0)
-                    setX(700);
 
-            }
-
-
-        };
-        timer.start();
     }
+
+    @Override
+    public void movement(Long now) {
+        move(speed , 0);
+        if (getX() > 600 && speed>0)
+            setX(-180);
+        if (getX() < -50 && speed<0)
+            setX(700);
     }
+}
 
 

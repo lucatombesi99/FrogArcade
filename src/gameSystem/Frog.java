@@ -96,19 +96,14 @@ public class Frog extends Entity {
 
 
 
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-
-            }
-
-
-
-        };
-        timer.start();
-    }
 
     }
+
+    @Override
+    public void movement(Long now) {
+
+    }
+}
 
 /*
          public void handle(KeyEvent event){

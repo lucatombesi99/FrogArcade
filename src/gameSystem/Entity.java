@@ -17,4 +17,6 @@ public abstract class Entity extends ImageView {
     public double getHeight() {
         return this.getBoundsInLocal().getHeight();
     }
+
+    public abstract void movement(Long now);
 }
