@@ -80,14 +80,14 @@ public class gameScene {
         //pos Image
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
 
-        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene);
+
 
     Image im = new Image(new File(IMAGES_PATH+"end_bonus.png").toURI().toString(), 31, 31, true, true);
 ImageView im1=new ImageView();
 im1.setX(308);
 im1.setY(102);
 im1.setImage(im);
-        backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage,im1,f);
+        backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage,im1);
 
         //tronchi
         Log firstLog1= new Log(IMAGES_PATH + "log3.png", 70, 300, 138, 1.5);
@@ -115,8 +115,10 @@ im1.setImage(im);
         Burrow bur4=new Burrow(233,102);
         Burrow bur5=new Burrow(308,102);
         bur2.setFrogEnd();
+        Bonus b=new Bonus();
+        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,b);
 
-        backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5);
+        backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5,b,f);
 
         startMoving();
         timer.start();

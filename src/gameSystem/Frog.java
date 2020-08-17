@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -12,6 +13,8 @@ import java.io.File;
 
 public class Frog extends Entity {
     final static String IMAGES_PATH = "Resources\\Images\\";
+    private static int BonusCounter=1;
+    private Bonus bonus;
     Image imgW1;
     Image imgA1;
     Image imgS1;
@@ -25,11 +28,15 @@ public class Frog extends Entity {
     boolean goUp,goLeft,goDown,goRight;
     private boolean singleClick=true;
     int size=30;//serve a fare lo scaling della rana
+    int xpos =-100;
 
-    public Frog(String link, Scene scene){
+
+
+    public Frog(String link, Scene scene,Bonus b){
         setImage(new Image(new File(link).toURI().toString(),size,size,true,true));
         setX(135);
         setY(475);
+        bonus=b;
         imgW1 = new Image(new File(IMAGES_PATH + "froggerUp.png").toURI().toString(),size,size,true,true);
         imgA1 = new Image(new File(IMAGES_PATH + "froggerLeft.png").toURI().toString(),size,size,true,true);
         imgS1 = new Image(new File(IMAGES_PATH + "froggerDown.png").toURI().toString(),size,size,true,true);
@@ -76,18 +83,22 @@ public class Frog extends Entity {
             public void handle(KeyEvent event){
                 if (event.getCode() == KeyCode.W){
                     setImage(imgW1);
+                    BonusCounter++;
                     singleClick=true;
                 }
                 else if(event.getCode() == KeyCode.A){
                     setImage(imgA1);
+                    BonusCounter++;
                     singleClick=true;
                 }
                 else if(event.getCode() == KeyCode.S){
                     setImage(imgS1);
+                    BonusCounter++;
                     singleClick=true;
                 }
                 else if(event.getCode() == KeyCode.D){
                     setImage(imgD1);
+                    BonusCounter++;
                     singleClick=true;
                 }
 
@@ -101,6 +112,11 @@ public class Frog extends Entity {
 
     @Override
     public void movement(Long now) {
+        if (BonusCounter % 5 == 0)
+            xpos = RandomBonus.visiblePos();
+
+        if(singleClick==false)
+            bonus.setX(xpos);
 
     }
 }

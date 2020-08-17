@@ -6,23 +6,23 @@ import java.util.Random;
 
 
 public class RandomBonus  {
-    private List<Integer> visible = Arrays.asList(9,83,158,233,308);
-    private List<Integer> notVisible = Arrays.asList(-100,-200,-50,300,350);
-    private Bonus bonus=new Bonus();
+    private static List<Integer> visible = Arrays.asList(9,83,158,233,308);
+    private static List<Integer> notVisible = Arrays.asList(-100,-200,-50,300,350);
 
-    public int visiblePos() {
+
+    public static int visiblePos() {
 
         Random rand = new Random();
         return visible.get(rand.nextInt(visible.size()));
     }
-    public int notVisiblePos() {
+    public static int notVisiblePos() {
 
         Random rand = new Random();
         return notVisible.get(rand.nextInt(notVisible.size()));
     }
 
-    public void changePos(int x){
-        this.visible.remove(x);
+    public static void removePos(int x){
+        visible.remove(x);
     }
 
 

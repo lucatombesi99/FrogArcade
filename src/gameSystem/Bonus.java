@@ -9,14 +9,10 @@ import static gameSystem.gameScene.IMAGES_PATH;
 public class Bonus extends Entity{
 
     public Bonus(){
-        setImage(new Image(new File(IMAGES_PATH+"fly.png").toURI().toString(), 31, 31, true, true));
-        setX(-100);
-        setY(102);
-
+        setImage(new Image(new File(IMAGES_PATH +"fly.png").toURI().toString(),25,25,true,true));
+        setX(11);
+        setY(107);
     }
-
-
-
     @Override
     public void movement(Long now) {
 
