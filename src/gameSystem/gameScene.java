@@ -81,12 +81,8 @@ public class gameScene {
 
 
 
-    Image im = new Image(new File(IMAGES_PATH+"end_bonus.png").toURI().toString(), 31, 31, true, true);
-ImageView im1=new ImageView();
-im1.setX(308);
-im1.setY(102);
-im1.setImage(im);
-        backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage,im1);
+
+        backgroundScene.getChildren().addAll(pauseButton,timeLabel,difficultyLabel, backgroundImage);
 
         //tronchi
         Log firstLog1= new Log(IMAGES_PATH + "log3.png", 70, 300, 138, 1.5);
@@ -117,12 +113,26 @@ im1.setImage(im);
         Bonus b=new Bonus();
         Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,b);
 
-        backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5,b,f);
+        backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5,bur4,b,f);
 
         startMoving();
         timer.start();
 
-        //bonus
+        //tartarughe
+        Turtle tur1=new Turtle(50,138,2,70);
+        Turtle tur2=new Turtle(70,170,-1.5,70);
+        Turtle tur3=new Turtle(90,202,1.2,70);
+        Turtle tur4=new Turtle(110,234,-1.3,70);
+        Turtle tur5=new Turtle(130,266,2.0,70);
+
+        //serpente  et cocco
+        Snake snake=new Snake(15,285,130,1.2);
+        Crocodile croc1=new Crocodile(100,138,40,1.5);
+        Crocodile croc2=new Crocodile(100,170,40,-1.5);
+
+
+        backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur5,tur4,snake,croc1,croc2);
+
 
 
         primaryStage.setScene(scene);

@@ -116,7 +116,7 @@ public class Frog extends Entity {
             xpos = RandomBonus.visiblePos();
 
         if (BonusCounter % 6 == 0 && (BonusCounter%5)!=0)
-            bonus.setX(xpos);
+            bonus.setX(xpos+2);
 
         if(BonusCounter %7 ==0 && (BonusCounter%6)!=0 && (BonusCounter%5)!=0)
             bonus.setX(-100);

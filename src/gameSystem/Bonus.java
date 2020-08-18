@@ -10,7 +10,7 @@ public class Bonus extends Entity{
 
     public Bonus(){
         setImage(new Image(new File(IMAGES_PATH +"fly.png").toURI().toString(),25,25,true,true));
-        setX(11);
+        setX(500);
         setY(107);
     }
     @Override
