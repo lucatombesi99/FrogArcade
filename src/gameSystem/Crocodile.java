@@ -8,7 +8,7 @@ import static gameSystem.gameScene.IMAGES_PATH;
 
 public class Crocodile extends Entity {
 
-    private  double speed;
+    private final double speed;
     Image crocodile1Right;
     Image crocodile2Right;
     Image crocodile1Left;

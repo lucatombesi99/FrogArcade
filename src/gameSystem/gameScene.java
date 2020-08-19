@@ -111,27 +111,36 @@ public class gameScene {
         Burrow bur5=new Burrow(308,102);
         bur2.setFrogEnd();
         Bonus b=new Bonus();
-        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,b);
 
-        backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5,bur4,b,f);
+
+       // backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5,bur4,b);
 
         startMoving();
         timer.start();
 
         //tartarughe
-        Turtle tur1=new Turtle(50,138,2,70);
+        Turtle tur1=new Turtle(50,138,2,70);/*
         Turtle tur2=new Turtle(70,170,-1.5,70);
         Turtle tur3=new Turtle(90,202,1.2,70);
         Turtle tur4=new Turtle(110,234,-1.3,70);
-        Turtle tur5=new Turtle(130,266,2.0,70);
-
+        Turtle tur5=new Turtle(130,262,2.0,70);
+        //,tur2,tur3,tur5,tur4
+        */
         //serpente  et cocco
         Snake snake=new Snake(15,285,130,1.2);
         Crocodile croc1=new Crocodile(100,138,40,1.5);
         Crocodile croc2=new Crocodile(100,170,40,-1.5);
 
 
-        backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur5,tur4,snake,croc1,croc2);
+        List<Entity> interceptable=getEntity(Entity.class);
+
+        //rana
+        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,interceptable,tur1);
+
+
+        backgroundScene.getChildren().addAll(tur1);
+        backgroundScene.getChildren().addAll(f);
+
 
 
 

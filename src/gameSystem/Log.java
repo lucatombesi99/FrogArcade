@@ -29,5 +29,9 @@ public class Log extends Entity {
         if (getX()<-50 && speed<0)
             setX(700);
     }
+
+    public double getSpeed(){
+        return  this.speed;
+    }
 }
 
