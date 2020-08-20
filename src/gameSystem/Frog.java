@@ -30,10 +30,11 @@ public class Frog extends Entity {
     double movementV=31;
     double movementH=15;
     boolean isDeath=true;
+    boolean noMove=false;
     boolean goUp,goLeft,goDown,goRight;
     private boolean singleClick=true;
     private static boolean death=false;
-    private static boolean isColliding=false;
+
     Turtle tur;
 
     int size=30;//serve a fare lo scaling della rana
@@ -135,6 +136,11 @@ public class Frog extends Entity {
     @Override
     public void movement(Long now) {
 
+        if(getY()==475 && getX()==135){
+            death=false;
+            noMove=false;
+        }
+
 
         if (collision.specificCollision(entities, this, Vehicle.class) || collision.specificCollision(entities, this, Snake.class) && death == true) {
             death = true;
@@ -142,20 +148,27 @@ public class Frog extends Entity {
             isDeath = Death.carDeath(now, this);
 
         }
-      /*  if (getY() < 260 && getY() > 107) {
 
-            if (collision.specificCollision(entities, this, Log.class) && !death) {
-                isColliding = true;
+        if (getY() < 260 && getY() > 107) {
+            if (collision.specificCollision(entities, this, Log.class) && !noMove) {
+
                 Log log = collision.getOne(entities, this, Log.class);
                 this.move(log.getSpeed(), 0);
 
+            }/*else if(collision.specificCollision(entities, this, Turtle.class) && !noMove) {
 
-            } else {
-                death = true;
-                isDeath = false;
-                isDeath = Death.waterDeath(now, this);
-            }
-        }*/
+                Turtle turtle = collision.getOne(entities, this, Turtle.class);
+                this.move(turtle.getSpeed(), 0);
+
+            }*/ else {
+                 death = true;
+                 isDeath = false;
+                 noMove=true;
+                 isDeath = Death.waterDeath(now, this);
+
+             }
+
+        }
 
         if (getY() < 107) {
             if (collision.specificCollision(entities, this, Burrow.class)) {
@@ -165,7 +178,8 @@ public class Frog extends Entity {
                         System.out.println("bonus");
 
                     b.setFrogEnd();
-                    RandomBonus.removePos(b.getX());
+                    RandomBonus.removePos((int)b.getX());
+                    RandomBonus.print();
                 } else {
                     death = true;
                     isDeath = false;

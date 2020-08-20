@@ -45,7 +45,13 @@ public class Turtle extends Entity {
 
         @Override
         public void movement (Long now){
-            if (now / 900000000 % 4 == 1) {
+            move(speed, 0);
+            if (getX() > 600 && speed > 0)
+                setX(-200);
+            if (getX() < -75 && speed < 0)
+                setX(600);
+
+           if (now / 900000000 % 4 == 1) {
                 setImage(turtleWet1);
                 sink = true;
             } else if (now / 900000000 % 4 == 2) {
@@ -66,11 +72,7 @@ public class Turtle extends Entity {
                 sink=false;
 
             }
-            move(speed, 0);
-            if (getX() > 600 && speed > 0)
-                setX(-200);
-            if (getX() < -75 && speed < 0)
-                setX(600);
+
         }
 
 }

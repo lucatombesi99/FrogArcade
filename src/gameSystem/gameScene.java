@@ -90,7 +90,7 @@ public class gameScene {
         Log firstLog3 = new Log(IMAGES_PATH + "log3.png", 70, 200, 202, 2.5);
         Log firstLog4 = new Log(IMAGES_PATH + "log2.png", 90, 150, 234, -2.5);
         Log firstLog5 = new Log(IMAGES_PATH + "log3.png", 70, 100, 266, 2.5);
-        backgroundScene.getChildren().addAll(firstLog1,firstLog2,firstLog3,firstLog4,firstLog5);
+        backgroundScene.getChildren().addAll(firstLog1,firstLog2,firstLog3,firstLog4);
 
         //macchine
 
@@ -117,12 +117,12 @@ public class gameScene {
         startMoving();
         timer.start();
 
-        //tartarughe
+        //tartarughe   tur2 pos 170
         Turtle tur1=new Turtle(50,138,2,70);
-        Turtle tur2=new Turtle(70,170,-1.5,70);
+        Turtle tur2=new Turtle(200,170,-1.5,70);
         Turtle tur3=new Turtle(90,202,1.2,70);
         Turtle tur4=new Turtle(110,234,-1.3,70);
-        Turtle tur5=new Turtle(130,262,2.0,70);
+        Turtle tur5=new Turtle(130,258,2.0,70);
 
 
         //serpente  et cocco
