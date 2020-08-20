@@ -33,13 +33,14 @@ public class Frog extends Entity {
     boolean goUp,goLeft,goDown,goRight;
     private boolean singleClick=true;
     private static boolean death=false;
+    private static boolean isColliding=false;
     Turtle tur;
 
     int size=30;//serve a fare lo scaling della rana
 
 
 
-    public Frog(String link, Scene scene, List<Entity> interceptable,Turtle tur){
+    public Frog(String link, Scene scene, List<Entity> interceptable){
         setImage(new Image(new File(link).toURI().toString(),size,size,true,true));
         setX(135);
         setY(475);
@@ -135,38 +136,62 @@ public class Frog extends Entity {
     public void movement(Long now) {
 
 
-        if(collision.carCollision(entities,this) || collision.snakeCollision(entities,this) ) {
+        if (collision.specificCollision(entities, this, Vehicle.class) || collision.specificCollision(entities, this, Snake.class) && death == true) {
             death = true;
-            isDeath=false;
+            isDeath = false;
             isDeath = Death.carDeath(now, this);
 
         }
-            if (collision.inWater(this)) {
-                if(collision.logCollision(entities,this)){
-                    Log log= collision.getLog(entities,this);
-                    this.move(log.getSpeed(),0);
+      /*  if (getY() < 260 && getY() > 107) {
 
-                }else if(collision.turtleCollision(entities,this)){
-                    Turtle turtle=collision.getTurtle(entities,this);
-                        if(turtle.isWet())
-                            this.move(turtle.getSpeed(),0);
+            if (collision.specificCollision(entities, this, Log.class) && !death) {
+                isColliding = true;
+                Log log = collision.getOne(entities, this, Log.class);
+                this.move(log.getSpeed(), 0);
 
 
+            } else {
+                death = true;
+                isDeath = false;
+                isDeath = Death.waterDeath(now, this);
+            }
+        }*/
 
-                }else {
+        if (getY() < 107) {
+            if (collision.specificCollision(entities, this, Burrow.class)) {
+                Burrow b = collision.getOne(entities, this, Burrow.class);
+                if (!b.isFull()) {
+                    if (collision.specificCollision(entities, this, Bonus.class))
+                        System.out.println("bonus");
+
+                    b.setFrogEnd();
+                    RandomBonus.removePos(b.getX());
+                } else {
                     death = true;
                     isDeath = false;
                     isDeath = Death.waterDeath(now, this);
+
                 }
+
+
             }
-
-
-
+        }
     }
 
 }
 
-   /*
 
+
+
+
+
+
+
+
+   /* perchè non funge?
+else  if(collision.specificCollision(entities,this,Turtle.class)){
+                    isColliding=true;
+                    Turtle turtle=collision.getOne(entities,this,Turtle.class);
+                    this.move(turtle.getSpeed(),0);
 
 */

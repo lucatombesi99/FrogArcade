@@ -36,9 +36,8 @@ public class Turtle extends Entity {
 
     }
     public boolean isWet() {
-        boolean b = true;
 
-        return b;
+        return sink;
     }
     public double getSpeed(){
         return this.speed;
@@ -57,12 +56,14 @@ public class Turtle extends Entity {
                 sink = true;
             } else if (now / 900000000 % 3 == 0) {
                 setImage(turtle2);
+                sink=false;
 
             } else if (now / 900000000 % 3 == 1) {
                 setImage(turtle1);
-
+                sink=false;
             } else if (now / 900000000 % 3 == 2) {
                 setImage(turtle3);
+                sink=false;
 
             }
             move(speed, 0);

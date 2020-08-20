@@ -13,7 +13,7 @@ public class Death {
     public static boolean carDeath(Long now, Frog frog) {
 
         boolean death=false;
-        if (now  % 11 == 0)
+        if (now  % 12 == 0)
             carD++;
 
         if (carD == 1) {

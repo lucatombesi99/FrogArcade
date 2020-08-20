@@ -8,7 +8,7 @@ import static gameSystem.gameScene.IMAGES_PATH;
 
 public class Bonus extends Entity{
 
-    private int xPos=-100;
+    private double xPos=-100;
 
     public Bonus(){
         setImage(new Image(new File(IMAGES_PATH +"fly.png").toURI().toString(),25,25,true,true));

@@ -94,11 +94,11 @@ public class gameScene {
 
         //macchine
 
-        Vehicle car1 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 300, 319, -1.7);
+        Vehicle car1 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 300, 323, -1.7);
         Vehicle truck1 = new Vehicle(IMAGES_PATH + "truck1Left.png", 60, 210,349, -1.3);
         Vehicle car2 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 150, 381, -1.5);
         Vehicle bigTruck1 = new Vehicle(IMAGES_PATH + "truck2Right.png", 100, 75,413, 1.3);
-        Vehicle car3 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 250, 445, -1.5);
+        Vehicle car3 = new Vehicle(IMAGES_PATH + "car1Left.png", 30, 250, 442, -1.5);
 
 
         backgroundScene.getChildren().addAll(car1,car2,car3,truck1,bigTruck1);
@@ -109,23 +109,22 @@ public class gameScene {
         Burrow bur3=new Burrow(158,102);
         Burrow bur4=new Burrow(233,102);
         Burrow bur5=new Burrow(308,102);
-        bur2.setFrogEnd();
         Bonus b=new Bonus();
 
 
-       // backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5,bur4,b);
+        backgroundScene.getChildren().addAll(bur1,bur2,bur3,bur5,bur4,b);
 
         startMoving();
         timer.start();
 
         //tartarughe
-        Turtle tur1=new Turtle(50,138,2,70);/*
+        Turtle tur1=new Turtle(50,138,2,70);
         Turtle tur2=new Turtle(70,170,-1.5,70);
         Turtle tur3=new Turtle(90,202,1.2,70);
         Turtle tur4=new Turtle(110,234,-1.3,70);
         Turtle tur5=new Turtle(130,262,2.0,70);
-        //,tur2,tur3,tur5,tur4
-        */
+
+
         //serpente  et cocco
         Snake snake=new Snake(15,285,130,1.2);
         Crocodile croc1=new Crocodile(100,138,40,1.5);
@@ -135,10 +134,10 @@ public class gameScene {
         List<Entity> interceptable=getEntity(Entity.class);
 
         //rana
-        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,interceptable,tur1);
+        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,interceptable);
 
 
-        backgroundScene.getChildren().addAll(tur1);
+        backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur5,tur4);
         backgroundScene.getChildren().addAll(f);
 
 
