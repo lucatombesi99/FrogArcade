@@ -1,16 +1,12 @@
 package gameSystem;
 
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import sample.Main;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import static gameSystem.gameScene.AUDIO_PATH;
+import static gameSystem.GameScene.AUDIO_PATH;
 
 
 public class AudioEffects {

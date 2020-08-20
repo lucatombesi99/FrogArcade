@@ -1,18 +1,16 @@
 package gameSystem;
 
-import javafx.animation.AnimationTimer;
+
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 
-import static gameSystem.gameScene.IMAGES_PATH;
+
 
 
 public class Frog extends Entity {
@@ -26,26 +24,28 @@ public class Frog extends Entity {
     Image imgA2;
     Image imgS2;
     Image imgD2;
+    Test test;
 
     double movementV=31;
     double movementH=15;
-    boolean isDeath=true;
-    boolean noMove=false;
-    boolean goUp,goLeft,goDown,goRight;
+    boolean isDeath=true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
+    boolean noMove=false;//per evitare che la rana continui a spostarsi se morta
+    boolean carDeath=false;//per continuare a rimanere nell' if anche se finisce collisione
     private boolean singleClick=true;
     private static boolean death=false;
 
-    Turtle tur;
+
+
 
     int size=30;//serve a fare lo scaling della rana
 
 
 
-    public Frog(String link, Scene scene, List<Entity> interceptable){
+    public Frog(String link, Scene scene, List<Entity> interceptable,Test test){
         setImage(new Image(new File(link).toURI().toString(),size,size,true,true));
         setX(135);
         setY(475);
-        this.tur=tur;
+        this.test=test;
         this.entities=interceptable;
         imgW1 = new Image(new File(IMAGES_PATH + "froggerUp.png").toURI().toString(),size,size,true,true);
         imgA1 = new Image(new File(IMAGES_PATH + "froggerLeft.png").toURI().toString(),size,size,true,true);
@@ -69,6 +69,7 @@ public class Frog extends Entity {
                         if(isDeath){
                         move(0, -movementV);
                         setImage(imgW2);
+
                         }
 
                     } else if (event.getCode() == KeyCode.A && singleClick && getX() > 10) {
@@ -136,13 +137,24 @@ public class Frog extends Entity {
     @Override
     public void movement(Long now) {
 
-        if(getY()==475 && getX()==135){
-            death=false;
-            noMove=false;
+        if(getX()<0 || getX()>350 || getY()<0){
+            death = true;
+            setX(135);
+            setY(475);
         }
 
 
-        if (collision.specificCollision(entities, this, Vehicle.class) || collision.specificCollision(entities, this, Snake.class) && death == true) {
+
+        if(getY()==475 && getX()==135){
+            death=false;
+            noMove=false;
+            carDeath=false;
+        }
+
+
+        if (collision.specificCollision(entities, this, Vehicle.class) || collision.specificCollision(entities, this, Snake.class) || carDeath) {
+
+             carDeath=true;
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
@@ -150,17 +162,35 @@ public class Frog extends Entity {
         }
 
         if (getY() < 260 && getY() > 107) {
-            if (collision.specificCollision(entities, this, Log.class) && !noMove) {
+            if(collision.specificCollision(entities, this, Turtle.class) && !noMove) {
 
+                Turtle turtle = collision.getOne(entities, this, Turtle.class);
+               if(!turtle.isWet())
+                   this.move(turtle.getSpeed(), 0);
+               else{
+                   death = true;
+                   isDeath = false;
+                   noMove=true;
+                   isDeath = Death.waterDeath(now, this);
+               }
+
+            }else if (collision.specificCollision(entities, this, Log.class) && !noMove) {
                 Log log = collision.getOne(entities, this, Log.class);
                 this.move(log.getSpeed(), 0);
 
-            }/*else if(collision.specificCollision(entities, this, Turtle.class) && !noMove) {
+            }else if(collision.specificCollision(entities, this, Crocodile.class) && !noMove){
+                Crocodile croc=collision.getOne(entities, this, Crocodile.class);
+                    if(croc.isHungry())
 
-                Turtle turtle = collision.getOne(entities, this, Turtle.class);
-                this.move(turtle.getSpeed(), 0);
+                        if(this.getX()>=(croc.getX()+65)){
+                            death = true;
+                            isDeath = false;
+                            noMove=true;
+                            isDeath = Death.waterDeath(now, this);
+                        }else
+                            this.move(croc.getSpeed(),0);
 
-            }*/ else {
+            }else {
                  death = true;
                  isDeath = false;
                  noMove=true;
@@ -203,9 +233,17 @@ public class Frog extends Entity {
 
 
    /* perchè non funge?
-else  if(collision.specificCollision(entities,this,Turtle.class)){
-                    isColliding=true;
-                    Turtle turtle=collision.getOne(entities,this,Turtle.class);
-                    this.move(turtle.getSpeed(),0);
+       if (collision.specificCollision(entities, this, Log.class) && !noMove) {
+
+                Log log = collision.getOne(entities, this, Log.class);
+                this.move(log.getSpeed(), 0);
+
+            }else if(collision.specificCollision(entities, this, Turtle.class) && !noMove) {
+                test.setTwo();
+                Turtle turtle = collision.getOne(entities, this, Turtle.class);
+              //  if(turtle!=null)
+                //    test.setThree();
+
+                this.move(turtle.getSpeed(), 0);
 
 */

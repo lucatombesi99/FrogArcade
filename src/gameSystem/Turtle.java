@@ -1,11 +1,9 @@
 package gameSystem;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
-import sample.Main;
 
 import java.io.File;
-import static gameSystem.gameScene.IMAGES_PATH;
+import static gameSystem.GameScene.IMAGES_PATH;
 
 public class Turtle extends Entity {
 
@@ -51,23 +49,23 @@ public class Turtle extends Entity {
             if (getX() < -75 && speed < 0)
                 setX(600);
 
-           if (now / 900000000 % 4 == 1) {
+          if ((now /3)/ 900000000 % 4 == 1) {
                 setImage(turtleWet1);
                 sink = true;
-            } else if (now / 900000000 % 4 == 2) {
+            } else if ((now /3) / 900000000 % 4 == 2) {
                 setImage(turtleWet2);
                 sink = true;
-            } else if (now / 900000000 % 4 == 3) {
+            } else if ((now /3) / 900000000 % 4 == 3) {
                 setImage(turtleWet3);
                 sink = true;
-            } else if (now / 900000000 % 3 == 0) {
+            } else if ((now /3)/ 900000000 % 3 == 0) {
                 setImage(turtle2);
                 sink=false;
 
-            } else if (now / 900000000 % 3 == 1) {
+            } else if ((now /3)/ 900000000 % 3 == 1) {
                 setImage(turtle1);
                 sink=false;
-            } else if (now / 900000000 % 3 == 2) {
+            } else if ((now /3)/ 900000000 % 3 == 2) {
                 setImage(turtle3);
                 sink=false;
 

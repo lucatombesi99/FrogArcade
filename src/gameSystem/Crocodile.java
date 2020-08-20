@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 
-import static gameSystem.gameScene.IMAGES_PATH;
+import static gameSystem.GameScene.IMAGES_PATH;
 
 public class Crocodile extends Entity {
 
@@ -13,6 +13,7 @@ public class Crocodile extends Entity {
     Image crocodile2Right;
     Image crocodile1Left;
     Image crocodile2Left;
+    private boolean hungry=false;
 
     public Crocodile(int xPos,int yPos,int size,double speed){
         this.speed=speed;
@@ -24,23 +25,32 @@ public class Crocodile extends Entity {
         setY(yPos);
         setImage(crocodile1Right);
     }
+    public double getSpeed(){
+        return this.speed;
+    }
+
 
     @Override
     public void movement(Long now) {
         move(speed,0);
-        if(speed>0){
-            if (now / 900000000 % 2 == 1)
+       if(speed>0){
+            if (now / 900000000 % 2 == 1) {
                 setImage(crocodile1Right);
-            else if (now / 900000000 % 2 == 0)
+                hungry=true;
+            } else if (now / 900000000 % 2 == 0) {
                 setImage(crocodile2Right);
-
+                hungry=false;
+            }
 
         }else{
-            if (now / 900000000 % 2 == 1)
+            if (now / 900000000 % 2 == 1) {
                 setImage(crocodile1Left);
-            else if (now / 900000000 % 2 == 0)
+                hungry=true;
+            }  else if (now / 900000000 % 2 == 0) {
                 setImage(crocodile2Left);
+                hungry=false;
 
+            }
         }
         if (getX()>500 && speed>0)
             setX(-180);
@@ -48,4 +58,5 @@ public class Crocodile extends Entity {
             setX(700);
 
     }
+    public boolean isHungry(){return hungry;}
 }

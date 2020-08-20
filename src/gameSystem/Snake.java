@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 
-import static gameSystem.gameScene.IMAGES_PATH;
+import static gameSystem.GameScene.IMAGES_PATH;
 
 public class Snake extends Entity{
 

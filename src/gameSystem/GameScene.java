@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class gameScene {
+public class GameScene {
 
     final static String AUDIO_PATH = "Resources\\Audio\\";
     final static String IMAGES_PATH = "Resources\\Images\\";
@@ -127,17 +127,21 @@ public class gameScene {
 
         //serpente  et cocco
         Snake snake=new Snake(15,285,130,1.2);
-        Crocodile croc1=new Crocodile(100,138,40,1.5);
-        Crocodile croc2=new Crocodile(100,170,40,-1.5);
+        Crocodile croc1=new Crocodile(100,138,90,1.5);
+        Crocodile croc2=new Crocodile(100,266,90,1.5);
 
+        Test test=new Test(30,50,100);
+        backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur4,croc1,croc2,test);
 
         List<Entity> interceptable=getEntity(Entity.class);
 
+
         //rana
-        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,interceptable);
+
+        Frog f=new Frog(IMAGES_PATH+"froggerUp.png",scene,interceptable,test);
 
 
-        backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur5,tur4);
+
         backgroundScene.getChildren().addAll(f);
 
 

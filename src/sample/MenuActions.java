@@ -11,14 +11,18 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class MenuActions {
-   static String path ="src\\sample\\menuTheme.mp3";
-   static Media media= new Media(new File(path).toURI().toString());
-   static MediaPlayer mediaPlayer=new MediaPlayer(media);
+
+    public static boolean autoPlay=true;
+
+    static String bkMusicPATH = Main.AUDIO_PATH + "Frogger Main Song Theme (loop).mp3";
+    static Media bkMusic= new Media(new File(bkMusicPATH).toURI().toString());
+    public static MediaPlayer mediaPlayer=new MediaPlayer(bkMusic);
 
     public static void play(){
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
+
     public static void pause(){
 
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -31,7 +35,9 @@ public class MenuActions {
         mediaPlayer.stop();
     }
 
+
     public static void scoreRecord(){
+
         Stage scoreStage = new Stage();
         scoreStage.setTitle("Ranking");
         Text score = new Text("             Ranking:\n");
@@ -44,4 +50,7 @@ public class MenuActions {
 
         resumeButton.setOnAction(e->scoreStage.close());
     }
+
+
+
 }

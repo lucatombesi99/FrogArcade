@@ -37,8 +37,6 @@ public class collision {
             if(one.intersects(f.getBoundsInLocal()))
                 theOne=one;
 
-
-
             return theOne;
 
     }
