@@ -146,9 +146,14 @@ public class Main extends Application {
         );
 
         //ACTION ON BUTTON RANKING
-        rankingButton.setOnAction(e->
-                MenuActions.scoreRecord()
-        );
+        rankingButton.setOnAction(e-> {
+            RankingTable.scoreRecord();
+
+            if (MenuActions.autoPlay)
+                MenuActions.mediaPlayer.pause();
+        });
+
+
 
 
         primaryStage.setScene(scene);

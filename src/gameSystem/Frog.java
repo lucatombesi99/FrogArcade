@@ -6,16 +6,23 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
+import sample.Main;
+
 
 import java.io.File;
 import java.util.List;
 
 
 
-
 public class Frog extends Entity {
-    final static String IMAGES_PATH = "Resources\\Images\\";
+
+    private final static String jump = new File(Main.AUDIO_PATH + "jump.wav").toURI().toString();
+    private final static AudioClip frogJump = new AudioClip(jump);
+
     private List<Entity> entities;
+
+
     Image imgW1;
     Image imgA1;
     Image imgS1;
@@ -26,81 +33,73 @@ public class Frog extends Entity {
     Image imgD2;
     Test test;
 
-    double movementV=31;
-    double movementH=15;
-    boolean isDeath=true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
+    double movementV = 31;
+    double movementH = 15;
+    boolean isDeath = true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
     boolean noMove=false;//per evitare che la rana continui a spostarsi se morta
     boolean carDeath=false;//per continuare a rimanere nell' if anche se finisce collisione
-    private boolean singleClick=true;
-    private static boolean death=false;
+    private boolean singleClick = true;//per continuare a rimanere nell' if anche se finisce collisione
+    private static boolean death = false;
 
 
 
-
-    int size=30;//serve a fare lo scaling della rana
-
+    int size = 30;//serve a fare lo scaling della rana
 
 
-    public Frog(String link, Scene scene, List<Entity> interceptable,Test test){
-        setImage(new Image(new File(link).toURI().toString(),size,size,true,true));
+    public Frog(String link, Scene scene, List<Entity> interceptable, Test test) {
+        setImage(new Image(new File(link).toURI().toString(), size, size, true, true));
         setX(135);
         setY(475);
-        this.test=test;
-        this.entities=interceptable;
-        imgW1 = new Image(new File(IMAGES_PATH + "froggerUp.png").toURI().toString(),size,size,true,true);
-        imgA1 = new Image(new File(IMAGES_PATH + "froggerLeft.png").toURI().toString(),size,size,true,true);
-        imgS1 = new Image(new File(IMAGES_PATH + "froggerDown.png").toURI().toString(),size,size,true,true);
-        imgD1 = new Image(new File(IMAGES_PATH + "froggerRight.png").toURI().toString(),size,size,true,true);
-        imgW2 = new Image(new File(IMAGES_PATH + "froggerUpJump.png").toURI().toString(),size,size,true,true);
-        imgA2 = new Image(new File(IMAGES_PATH + "froggerLeftJump.png").toURI().toString(),size,size,true,true);
-        imgS2 = new Image(new File(IMAGES_PATH + "froggerDownJump.png").toURI().toString(),size,size,true,true);
-        imgD2 = new Image(new File(IMAGES_PATH + "froggerRightJump.png").toURI().toString(),size,size,true,true);
+        this.test= test;
+        this.entities = interceptable;
+        imgW1 = new Image(new File(Main.IMAGE_PATH + "froggerUp.png").toURI().toString(), size, size, true, true);
+        imgA1 = new Image(new File(Main.IMAGE_PATH + "froggerLeft.png").toURI().toString(), size, size, true, true);
+        imgS1 = new Image(new File(Main.IMAGE_PATH + "froggerDown.png").toURI().toString(), size, size, true, true);
+        imgD1 = new Image(new File(Main.IMAGE_PATH + "froggerRight.png").toURI().toString(), size, size, true, true);
+        imgW2 = new Image(new File(Main.IMAGE_PATH + "froggerUpJump.png").toURI().toString(), size, size, true, true);
+        imgA2 = new Image(new File(Main.IMAGE_PATH + "froggerLeftJump.png").toURI().toString(), size, size, true, true);
+        imgS2 = new Image(new File(Main.IMAGE_PATH + "froggerDownJump.png").toURI().toString(), size, size, true, true);
+        imgD2 = new Image(new File(Main.IMAGE_PATH + "froggerRightJump.png").toURI().toString(), size, size, true, true);
 
         //movimento
-        if(death){
+        if (death) {
 
-        }else {
+        } else {
             scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 public void handle(KeyEvent event) {
 
-
                     if (event.getCode() == KeyCode.W && singleClick && getY() > 120) {
                         singleClick = false;
-                        if(isDeath){
-                        move(0, -movementV);
-                        setImage(imgW2);
-
+                        if (isDeath) {
+                            move(0, -movementV);
+                            setImage(imgW2);
                         }
 
                     } else if (event.getCode() == KeyCode.A && singleClick && getX() > 10) {
                         singleClick = false;
-                        if(isDeath) {
+                        if (isDeath) {
                             move(-movementH, 0);
                             setImage(imgA2);
                         }
 
                     } else if (event.getCode() == KeyCode.S && singleClick && getY() < 475) {
                         singleClick = false;
-                        if(isDeath) {
+                        if (isDeath) {
                             move(0, movementV);
                             setImage(imgS2);
                         }
 
                     } else if (event.getCode() == KeyCode.D && singleClick && getX() < 330) {
                         singleClick = false;
-                        if(isDeath) {
+                        if (isDeath) {
                             move(movementH, 0);
                             setImage(imgD2);
                         }
-
                     }
-
-
                 }
-
-
             });
         }
+
         if (death) {
 
         } else {
@@ -108,30 +107,33 @@ public class Frog extends Entity {
                 public void handle(KeyEvent event) {
 
                     if (event.getCode() == KeyCode.W) {
-                        if(isDeath) {
+                        if (isDeath) {
                             setImage(imgW1);
                             singleClick = true;
+                            frogJump.play(20);
                         }
                     } else if (event.getCode() == KeyCode.A) {
-                        if(isDeath) {
+                        if (isDeath) {
                             setImage(imgA1);
                             singleClick = true;
+                            frogJump.play(20);
                         }
                     } else if (event.getCode() == KeyCode.S) {
-                        setImage(imgS1);
-                        singleClick = true;
+                        if(isDeath) {
+                            setImage(imgS1);
+                            singleClick = true;
+                            frogJump.play(20);
+                        }
                     } else if (event.getCode() == KeyCode.D) {
-                        setImage(imgD1);
-                        singleClick = true;
+                        if(isDeath) {
+                            setImage(imgD1);
+                            singleClick = true;
+                            frogJump.play(20);
+                        }
                     }
-
                 }
-
             });
         }
-
-
-
     }
 
     @Override
@@ -143,8 +145,6 @@ public class Frog extends Entity {
             setY(475);
         }
 
-
-
         if(getY()==475 && getX()==135){
             death=false;
             noMove=false;
@@ -152,63 +152,65 @@ public class Frog extends Entity {
         }
 
 
-        if (collision.specificCollision(entities, this, Vehicle.class) || collision.specificCollision(entities, this, Snake.class) || carDeath) {
-
-             carDeath=true;
+        if (Collision.specificCollision(entities, this, Vehicle.class) || Collision.specificCollision(entities, this, Snake.class) && carDeath) {
+            carDeath=true;
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
-
         }
 
+
+        //ACQUA
         if (getY() < 260 && getY() > 107) {
-            if(collision.specificCollision(entities, this, Turtle.class) && !noMove) {
+            if(Collision.specificCollision(entities, this, Turtle.class) && !noMove) {
 
-                Turtle turtle = collision.getOne(entities, this, Turtle.class);
-               if(!turtle.isWet())
-                   this.move(turtle.getSpeed(), 0);
-               else{
-                   death = true;
-                   isDeath = false;
-                   noMove=true;
-                   isDeath = Death.waterDeath(now, this);
-               }
+                Turtle turtle = Collision.getOne(entities, this, Turtle.class);
+                if(!turtle.isWet())
+                    this.move(turtle.getSpeed(), 0);
+                else{
+                    death = true;
+                    isDeath = false;
+                    noMove=true;
+                    isDeath = Death.waterDeath(now, this);
+                }
 
-            }else if (collision.specificCollision(entities, this, Log.class) && !noMove) {
-                Log log = collision.getOne(entities, this, Log.class);
+            }else if (Collision.specificCollision(entities, this, Log.class) && !noMove) {
+                Log log = Collision.getOne(entities, this, Log.class);
                 this.move(log.getSpeed(), 0);
 
-            }else if(collision.specificCollision(entities, this, Crocodile.class) && !noMove){
-                Crocodile croc=collision.getOne(entities, this, Crocodile.class);
-                    if(croc.isHungry())
+            }else if(Collision.specificCollision(entities, this, Crocodile.class) && !noMove){
+                Crocodile croc=Collision.getOne(entities, this, Crocodile.class);
+                if(croc.isHungry())
 
-                        if(this.getX()>=(croc.getX()+65)){
-                            death = true;
-                            isDeath = false;
-                            noMove=true;
-                            isDeath = Death.waterDeath(now, this);
-                        }else
-                            this.move(croc.getSpeed(),0);
+                    if(this.getX()>=(croc.getX()+65)){
+                        death = true;
+                        isDeath = false;
+                        noMove=true;
+                        isDeath = Death.waterDeath(now, this);
+                    }else
+                        this.move(croc.getSpeed(),0);
 
             }else {
-                 death = true;
-                 isDeath = false;
-                 noMove=true;
-                 isDeath = Death.waterDeath(now, this);
+                death = true;
+                isDeath = false;
+                noMove=true;
+                isDeath = Death.waterDeath(now, this);
 
-             }
+            }
 
         }
 
+        //ZONA VITTORIA
         if (getY() < 107) {
-            if (collision.specificCollision(entities, this, Burrow.class)) {
-                Burrow b = collision.getOne(entities, this, Burrow.class);
+            if (Collision.specificCollision(entities, this, Burrow.class)) {
+                GameScene.score.addPoints(100);
+                Burrow b = Collision.getOne(entities, this, Burrow.class);
                 if (!b.isFull()) {
-                    if (collision.specificCollision(entities, this, Bonus.class))
+                    if (Collision.specificCollision(entities, this, Bonus.class))
                         System.out.println("bonus");
 
                     b.setFrogEnd();
-                    RandomBonus.removePos((int)b.getX());
+                    RandomBonus.removePos((int) b.getX());
                     RandomBonus.print();
                 } else {
                     death = true;
@@ -221,9 +223,7 @@ public class Frog extends Entity {
             }
         }
     }
-
 }
-
 
 
 

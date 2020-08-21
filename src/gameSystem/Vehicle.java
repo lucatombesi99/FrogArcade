@@ -1,12 +1,10 @@
 package gameSystem;
 
-
-import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
-
 import java.io.File;
 
 public class Vehicle extends Entity {
+
 
 
     double speed;
@@ -25,7 +23,6 @@ public class Vehicle extends Entity {
         return this.speed;
     }
 
-
     @Override
     public void movement(Long now) {
         move(speed , 0);
@@ -35,5 +32,4 @@ public class Vehicle extends Entity {
             setX(700);
     }
 }
-
 

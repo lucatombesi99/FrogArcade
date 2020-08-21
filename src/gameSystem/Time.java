@@ -4,11 +4,12 @@ package gameSystem;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-import javax.swing.text.html.ImageView;
+
 
 public class Time extends Pane{
 
@@ -37,18 +38,14 @@ public class Time extends Pane{
         }else if(time== 0 ){
             time=60;
             animation.setDelay(Duration.seconds(2));
+        }else if(Death.carD >0){
+            time=60;
+            animation.setDelay(Duration.seconds(2));
         }
         s = time + "";
         timeLabel.setText("Time: " + s);
     }
 
-    private void stopTime(){
-        animation.stop();
-    }
-
-    private void restartTime(){
-        animation.playFromStart();
-    }
 
     private void finishTime(Pane pane, ImageView im){
         if(time==0 && GameScene.FROGGER_LIVES>0){

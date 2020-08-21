@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import java.util.ArrayList;
 import java.util.List;
 
-public class collision {
+public class Collision {
     
 
     public static <T extends Entity> boolean specificCollision(List<Entity> interceptable,Frog f,Class<T> cls){

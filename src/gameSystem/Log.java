@@ -1,6 +1,5 @@
 package gameSystem;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 
 import java.io.File;
@@ -12,7 +11,7 @@ public class Log extends Entity {
 
     public Log(String logImage, int size, int x, int y, double speed) {
 
-        setImage(new Image(new File(logImage).toURI().toString(), size, size, true, true));
+        setImage(new Image(new File(logImage).toURI().toString(), size, 30, true, true));
         setX(x);
         setY(y);
         this.speed = speed;

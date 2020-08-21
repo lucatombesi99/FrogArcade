@@ -1,10 +1,11 @@
 package gameSystem;
 
 import javafx.scene.image.Image;
+import sample.Main;
 
 import java.io.File;
 
-import static gameSystem.GameScene.IMAGES_PATH;
+
 
 public class Snake extends Entity{
 
@@ -16,14 +17,15 @@ public class Snake extends Entity{
 
     public Snake(int xPos,int yPos,int size,double speed){
         this.speed=speed;
-        snake1Right = new Image(new File(IMAGES_PATH + "snake1Right.png").toURI().toString(), size, 30, true, true);
-        snake2Right = new Image(new File(IMAGES_PATH + "snake2Right.png").toURI().toString(), size, 30,true, true);
-        snake1Left = new Image(new File(IMAGES_PATH + "snake1Left.png").toURI().toString(), size, 30,true, true);
-        snake2Left = new Image(new File(IMAGES_PATH + "snake2Left.png").toURI().toString(), size, 30,true, true);
+        snake1Right = new Image(new File(Main.IMAGE_PATH + "snake1Right.png").toURI().toString(), size, 30, true, true);
+        snake2Right = new Image(new File(Main.IMAGE_PATH + "snake2Right.png").toURI().toString(), size, 30,true, true);
+        snake1Left = new Image(new File(Main.IMAGE_PATH + "snake1Left.png").toURI().toString(), size, 30,true, true);
+        snake2Left = new Image(new File(Main.IMAGE_PATH+ "snake2Left.png").toURI().toString(), size, 30,true, true);
         setX(xPos);
         setY(yPos);
         setImage(snake1Right);
     }
+
     @Override
     public void movement(Long now) {
 
@@ -48,7 +50,5 @@ public class Snake extends Entity{
                 setImage(snake2Left);
             }
         }
-
-
     }
 }
