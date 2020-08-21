@@ -30,9 +30,9 @@ public class Snake extends Entity{
     public void movement(Long now) {
 
         move(speed,0);
-        if(getX()>=300 && speed>0)
+        if(getX()>=280 && speed>0)
             speed=-speed;
-        else if(getX()<=20 && speed<0)
+        else if(getX()<=10 && speed<0)
             speed=-speed;
 
         if(speed>0) {

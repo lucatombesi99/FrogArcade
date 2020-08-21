@@ -3,7 +3,7 @@ package gameSystem;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import sample.Main;
-import sample.RankingTable;
+
 
 import java.io.File;
 
@@ -28,9 +28,6 @@ public class Death {
         if(carD==1) {
             frog.setImage(new Image(new File(Main.IMAGE_PATH + "cardeath1.png").toURI().toString(), 30, 30, true, true));
             frogDie.play(20);
-           // GameScene.clock.animation.stop();
-
-
 
         }
 
@@ -65,7 +62,7 @@ public class Death {
         if(watD==1) {
             frog.setImage(new Image(new File(Main.IMAGE_PATH + "waterdeath1.png").toURI().toString(), 30, 30, true, true));
             waterSplash.play(20);
-           // GameScene.clock.animation.stop();
+
 
 
 

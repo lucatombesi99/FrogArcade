@@ -32,7 +32,7 @@ public class Frog extends Entity {
     Image imgD2;
     Test test;
 
-    double movementV = 31;
+    double movementV = 31.2;
     double movementH = 15;
 
     boolean timeExpired=false;
@@ -189,7 +189,7 @@ public class Frog extends Entity {
 
             }else if(Collision.specificCollision(entities, this, Crocodile.class) && !noMove){
                 Crocodile croc=Collision.getOne(entities, this, Crocodile.class);
-                if(croc.isHungry())
+               if(croc.isHungry())
 
                     if(this.getX()>=(croc.getX()+65)){
                         death = true;
