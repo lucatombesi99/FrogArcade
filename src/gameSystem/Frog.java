@@ -34,6 +34,8 @@ public class Frog extends Entity {
 
     double movementV = 31;
     double movementH = 15;
+
+    boolean timeExpired=false;
     boolean isDeath = true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
     boolean noMove=false;//per evitare che la rana continui a spostarsi se morta
     boolean carDeath=false;//per continuare a rimanere nell' if anche se finisce collisione
@@ -144,14 +146,25 @@ public class Frog extends Entity {
             death=false;
             noMove=false;
             carDeath=false;
+            timeExpired=false;
         }
 
+        if(GameScene.timeLeft==0 || timeExpired) {
+            timeExpired=true;
+            death = true;
+            isDeath = false;
+            isDeath = Death.carDeath(now, this);
+            GameScene.timeLeft=6;
+
+
+        }
 
         if (Collision.specificCollision(entities, this, Vehicle.class) || Collision.specificCollision(entities, this, Snake.class) || carDeath) {
             carDeath=true;
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
+            GameScene.timeLeft=6;
         }
 
 
@@ -167,6 +180,7 @@ public class Frog extends Entity {
                     isDeath = false;
                     noMove=true;
                     isDeath = Death.waterDeath(now, this);
+                    GameScene.timeLeft=6;
                 }
 
             }else if (Collision.specificCollision(entities, this, Log.class) && !noMove) {
@@ -182,6 +196,7 @@ public class Frog extends Entity {
                         isDeath = false;
                         noMove=true;
                         isDeath = Death.waterDeath(now, this);
+                        GameScene.timeLeft=6;
                     }else
                         this.move(croc.getSpeed(),0);
 
@@ -190,7 +205,7 @@ public class Frog extends Entity {
                 isDeath = false;
                 noMove=true;
                 isDeath = Death.waterDeath(now, this);
-
+                GameScene.timeLeft=6;
             }
 
         }
@@ -209,6 +224,7 @@ public class Frog extends Entity {
                     this.setX(135);
                     this.setY(475);
                     b.setFrogEnd();
+                    GameScene.timeLeft=6;
                     RandomBonus.removePos((int) b.getX());
                     RandomBonus.print();
                 } else {

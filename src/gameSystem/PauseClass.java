@@ -2,6 +2,7 @@ package gameSystem;
 
 
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -13,28 +14,21 @@ import sample.MenuActions;
 
 import java.io.File;
 
-public class PauseClass extends Pane {
-
-      Button pauseButton = new Button("||");
-
-
-    public PauseClass(){
-        //position PAUSE button
-        pauseButton.setTranslateX(10.0);
-        pauseButton.setTranslateY(10.0);
-
-        getChildren().add(pauseButton);
-        pauseButton.setOnAction(e-> pause());
-    }
+public  class PauseClass {
 
 
 
 
 
-    private void  pause() {
 
+
+
+
+    public static void  pause(AnimationTimer timer) {
+
+        timer.stop();
         //Fermo il tempo
-        GameScene.clock.animation.stop();
+       // GameScene.clock.animation.stop();
 
         Stage pauseStage = new Stage();
         pauseStage.setTitle("Pause Menu");
@@ -87,7 +81,8 @@ public class PauseClass extends Pane {
 
         resumeButton.setOnAction(e -> {
             pauseStage.close();
-            GameScene.clock.animation.play();
+            timer.start();
+
         });
     }
 }

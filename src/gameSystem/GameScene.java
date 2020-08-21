@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import sample.Main;
+import sample.RankingTable;
 
 import java.io.File;
 import java.util.*;
@@ -20,16 +21,18 @@ import java.util.*;
 public class GameScene {
 
 
-    public AnimationTimer timer; //se lo usiamo per la classe tempo deve essere public
+    public AnimationTimer timer;
 
     //si può mettere privato e final
     public static Image lifeURL = new Image(new File(Main.IMAGE_PATH + "cuore.png").toURI().toString(), 25,25, true,true);
     public static int FROGGER_LIVES = 5;
-
+    public boolean noMoreLives=false;
     Media media;
-    //public static Button pauseButton;
+    public static Button pauseButton;
     Label difficultyLabel;
-    //Label scoreLabel;
+    Label timeLabel;
+    static double  timeLeft=5;
+    private long lastUpdate = 0 ;
     public static AnchorPane backgroundScene;
     public static ImageView life1,life2,life3,life4,life5;
     ImageView backgroundImage;
@@ -37,8 +40,8 @@ public class GameScene {
 
     public static MediaPlayer mediaPlayer;
 
-    static PauseClass pauseButton;
-    static Time clock;
+
+  //  static Time clock;
     static Score score;
 
 
@@ -61,9 +64,10 @@ public class GameScene {
             level += "H";
 
         //SCRITTA IN ALTO
-        //pauseButton = new Button("||");
-
-        //timeLabel.setFont(new Font("Calibri", 20));
+        pauseButton = new Button("||");
+        timeLabel=new Label("Time: "+timeLeft);
+        //timeLabel.
+        timeLabel.setFont(new Font("Calibri", 20));
         difficultyLabel = new Label("Difficulty:" + level);
         difficultyLabel.setFont(new Font("Calibri", 20));
         //scoreLabel = new Label("Score: "+ points);
@@ -83,6 +87,8 @@ public class GameScene {
         //pos Etiichetta Difficoltà
         AnchorPane.setTopAnchor(difficultyLabel, 10.0);
         AnchorPane.setLeftAnchor(difficultyLabel, 250.0);
+        AnchorPane.setTopAnchor(timeLabel, 10.0);
+        AnchorPane.setLeftAnchor(timeLabel, 150.0);
 
         //pos Etichetta Punteggio
         //AnchorPane.setTopAnchor(scoreLabel, 10.0);
@@ -93,9 +99,8 @@ public class GameScene {
         Image backgroundImageURL = new Image(new File(Main.IMAGE_PATH + "iKogsKW.png").toURI().toString(), 350, 500, true, true, false);
         backgroundImage = new ImageView(backgroundImageURL);
 
-        clock = new Time();
+      //  clock = new Time();
         score= new Score();
-        pauseButton = new PauseClass();
 
 
         Scene scene = new Scene(backgroundScene, 350, 500);
@@ -105,16 +110,10 @@ public class GameScene {
         //pos Image
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
 
-
-        /*Image im = new Image(new File(Main.IMAGE_PATH + "end_bonus.png").toURI().toString(), 31, 31, true, true);
-        ImageView im1 = new ImageView();
-        im1.setX(308);
-        im1.setY(102);
-        im1.setImage(im);*/
-        backgroundScene.getChildren().addAll(pauseButton, difficultyLabel,clock, score, backgroundImage);
+        backgroundScene.getChildren().addAll(difficultyLabel, score,timeLabel, backgroundImage,pauseButton);
 
 
-        System.out.println("skrt");
+
         //Vite
         life1 = new ImageView(lifeURL);
         life1.setX(230);
@@ -213,6 +212,7 @@ public class GameScene {
         startMoving();
         timer.start();
 
+
         List<Entity> interceptable=getEntity(Entity.class);
 
         //rana
@@ -223,9 +223,7 @@ public class GameScene {
         primaryStage.setScene(scene);
 
 
-      /*  pauseButton.setOnAction(e -> {
-            PauseClass.pause(mediaPlayer);
-        }); */
+        pauseButton.setOnAction(e -> PauseClass.pause(timer));
 
 
 
@@ -238,9 +236,6 @@ public class GameScene {
 
     }
 
-
-
-
     public void startMoving(){
         timer=new AnimationTimer() {
             @Override
@@ -248,6 +243,25 @@ public class GameScene {
                 List<Entity> objects=getEntity(Entity.class);
                 for(Entity object: objects) {
                     object.movement(now);
+                }
+                if(now - lastUpdate >= 1_000_000_000) {
+                    timeLeft--;
+                    timeLabel.setText("Time: "+timeLeft);
+                    lastUpdate=now;
+                }
+
+                if(GameScene.FROGGER_LIVES == 5)
+                    GameScene.backgroundScene.getChildren().remove(GameScene.life5);
+                if(GameScene.FROGGER_LIVES == 4)
+                    GameScene.backgroundScene.getChildren().remove(GameScene.life4);
+                if(GameScene.FROGGER_LIVES == 3)
+                    GameScene.backgroundScene.getChildren().remove(GameScene.life3);
+                if(GameScene.FROGGER_LIVES == 2)
+                    GameScene.backgroundScene.getChildren().remove(GameScene.life2);
+                if(GameScene.FROGGER_LIVES == 1 && !noMoreLives) {
+                    GameScene.backgroundScene.getChildren().remove(GameScene.life1);
+                    noMoreLives=true;
+                    RankingTable.scoreRecord();
                 }
             }
         };
