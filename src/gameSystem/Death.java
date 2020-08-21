@@ -10,10 +10,10 @@ import java.io.File;
 
 public class Death {
     private final static String die= new File(Main.AUDIO_PATH + "frog_die.wav").toURI().toString();
-    private static AudioClip frogDie = new AudioClip(die);
+     static AudioClip frogDie = new AudioClip(die);
 
     private final static String waterSplashSound= new File(Main.AUDIO_PATH + "water-splash.wav").toURI().toString();
-    private static AudioClip waterSplash= new AudioClip(waterSplashSound);
+     static AudioClip waterSplash= new AudioClip(waterSplashSound);
 
     static int carD = 0;
     static int watD = 0;

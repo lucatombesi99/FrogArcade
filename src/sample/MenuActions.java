@@ -1,15 +1,9 @@
 package sample;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Text;
-
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
 
 import java.io.File;
 

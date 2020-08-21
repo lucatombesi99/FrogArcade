@@ -19,9 +19,7 @@ public class Burrow extends Entity {
         setImage(new Image(new File(Main.IMAGE_PATH+"FrogEnd.png").toURI().toString(), 31, 31, true, true));
         full= true;
     }
-    public void setNormalEnd(){
-        setImage(new Image(new File(Main.IMAGE_PATH+"End.png").toURI().toString(), 31, 31, true, true));
-    }
+
 
     public boolean isFull(){
         return full;

@@ -1,6 +1,6 @@
 package sample;
 
-import gameSystem.GameScene;
+
 
 public class Player {
 

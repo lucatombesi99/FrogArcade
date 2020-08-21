@@ -1,6 +1,6 @@
 package gameSystem;
 
-import javafx.scene.Node;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +20,12 @@ public class Collision {
         return collides;
     }
 
-
+    @SuppressWarnings("unchecked")
     public static <T extends Entity> List<T> getSpecificEntity(List<Entity> interceptable,Class<T> cls) {
-        ArrayList<T> entityArray = new ArrayList<T>();
-        for(int i=0;i<interceptable.size();i++)
-            if (cls.isInstance(interceptable.get(i)))
-                entityArray.add((T)interceptable.get(i));
+        ArrayList<T> entityArray = new ArrayList<>();
+        for (Entity entity : interceptable)
+            if (cls.isInstance(entity))
+                entityArray.add((T) entity);
 
         return entityArray;
     }

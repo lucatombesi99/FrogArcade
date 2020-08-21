@@ -19,9 +19,6 @@ public class Vehicle extends Entity {
 
     }
 
-    public double getSpeed(){
-        return this.speed;
-    }
 
     @Override
     public void movement(Long now) {

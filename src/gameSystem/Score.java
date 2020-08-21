@@ -1,20 +1,18 @@
 package gameSystem;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.util.Duration;
 
-import java.util.List;
+
 
 public class Score extends Pane {
 
     int score = 0;
     Label scoreLabel = new Label("Score: " + score);
 
-    private List<Entity> entities;
+
 
     public Score() {
         scoreLabel.setFont(new Font("Calibri", 20));

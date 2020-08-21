@@ -23,7 +23,7 @@ public class GameScene {
     public AnimationTimer timer; //se lo usiamo per la classe tempo deve essere public
 
     //si può mettere privato e final
-    public static Image lifeURL = new Image(new File(Main.IMAGE_PATH + "cuore.png").toURI().toString(), 25,25, true,true);;
+    public static Image lifeURL = new Image(new File(Main.IMAGE_PATH + "cuore.png").toURI().toString(), 25,25, true,true);
     public static int FROGGER_LIVES = 5;
 
     Media media;
@@ -34,8 +34,7 @@ public class GameScene {
     public static ImageView life1,life2,life3,life4,life5;
     ImageView backgroundImage;
     String level = "";
-    Frog f;
-    public int points=0;
+
     public static MediaPlayer mediaPlayer;
 
     static PauseClass pauseButton;
@@ -115,7 +114,7 @@ public class GameScene {
         backgroundScene.getChildren().addAll(pauseButton, difficultyLabel,clock, score, backgroundImage);
 
 
-
+        System.out.println("skrt");
         //Vite
         life1 = new ImageView(lifeURL);
         life1.setX(230);
@@ -224,9 +223,9 @@ public class GameScene {
         primaryStage.setScene(scene);
 
 
-       /* pauseButton.setOnAction(e -> {
+      /*  pauseButton.setOnAction(e -> {
             PauseClass.pause(mediaPlayer);
-        });*/
+        }); */
 
 
 
@@ -254,8 +253,9 @@ public class GameScene {
         };
 
     }
+    @SuppressWarnings("unchecked")//per togliere il warning del cast,infatti ogni nodo che passa il controllo è sicuramente un'entità
     public <T extends Entity> List<T> getEntity(Class<T> cls) {
-        ArrayList<T> someArray = new ArrayList<T>();
+        ArrayList<T> someArray = new ArrayList<>();
         for(Node n: backgroundScene.getChildren())
             if (cls.isInstance(n)) {
                 someArray.add((T)n);

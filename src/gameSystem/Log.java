@@ -7,7 +7,7 @@ import java.io.File;
 
 public class Log extends Entity {
 
-    private double speed;
+    private final double speed;
 
     public Log(String logImage, int size, int x, int y, double speed) {
 

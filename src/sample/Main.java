@@ -1,6 +1,6 @@
 package sample;
 
-import gameSystem.Frog;
+
 import gameSystem.GameScene;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -115,9 +115,9 @@ public class Main extends Application {
             GameScene g= new GameScene();
 
             int difficulty;
-            if(difficultyChoiceBox.getValue() == "EASY")
+            if(difficultyChoiceBox.getValue().equals("EASY"))
                 difficulty=0;
-            else if(difficultyChoiceBox.getValue() == "MEDIUM")
+            else if(difficultyChoiceBox.getValue().equals("MEDIUM"))
                 difficulty=1;
             else
                 difficulty=2;

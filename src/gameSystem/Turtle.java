@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Turtle extends Entity {
 
-    private double speed;
+    private final double speed;
     Image turtle1;
     Image turtle2;
     Image turtle3;

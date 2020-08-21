@@ -16,9 +16,9 @@ public class RankingTable {
 
     private static int numClickAdd = 0;
 
-
     private static TextField nameInput;
     private static TableView<Player> table;
+
 
     public static void scoreRecord() {
 
@@ -56,8 +56,10 @@ public class RankingTable {
         scoreColumn.setMinWidth(100);
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
 
-        table = new TableView<Player>();
+
+        table = new TableView<>();
         table.setItems(getPlayer());
+        //noinspection unchecked
         table.getColumns().addAll(nameColumn, scoreColumn);
 
         gridPane.add(hBox, 0, 2);

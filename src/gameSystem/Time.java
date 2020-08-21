@@ -17,7 +17,7 @@ public class Time extends Pane{
     public  Timeline animation;
     Label timeLabel = new Label("Time: "+ "60");
     int time = 60;
-    private String s="Time: ";
+     String s="Time: ";
 
     public Time(){
         timeLabel.setFont(new Font("Calibri", 20));

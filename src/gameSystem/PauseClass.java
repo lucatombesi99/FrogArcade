@@ -1,13 +1,11 @@
 package gameSystem;
 
 
-import javafx.geometry.Insets;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.Main;
@@ -17,7 +15,7 @@ import java.io.File;
 
 public class PauseClass extends Pane {
 
-    private Button pauseButton = new Button("||");
+      Button pauseButton = new Button("||");
 
 
     public PauseClass(){
