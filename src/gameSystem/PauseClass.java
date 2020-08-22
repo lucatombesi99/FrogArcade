@@ -3,12 +3,14 @@ package gameSystem;
 
 
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import sample.Main;
 import sample.MenuActions;
 
@@ -24,7 +26,7 @@ public  class PauseClass {
 
 
 
-    public static void  pause(AnimationTimer timer) {
+    public static void  pause(AnimationTimer timer,Button button) {
 
         timer.stop();
         //Fermo il tempo
@@ -82,7 +84,14 @@ public  class PauseClass {
         resumeButton.setOnAction(e -> {
             pauseStage.close();
             timer.start();
+            button.setDisable(false);
 
+        });
+
+        pauseStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                button.setDisable(false);
+            }
         });
     }
 }

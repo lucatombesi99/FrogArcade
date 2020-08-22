@@ -48,7 +48,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
     int size = 30;//serve a fare lo scaling della rana
 
 
-    public Frog(String link, Scene scene, List<Entity> interceptable, Test test) {
+    public Frog(String link, Scene scene, List<Entity> interceptable) {
         setImage(new Image(new File(link).toURI().toString(), size, size, true, true));
         setX(135);
         setY(475);
@@ -148,6 +148,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
             noMove=false;
             carDeath=false;
             timeExpired=false;
+            GameScene.lifelost=false;
         }
 
         if(GameScene.timeLeft==0 || timeExpired) {
@@ -217,7 +218,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
         //ZONA VITTORIA
         if (getY() < 107) {
             if (Collision.specificCollision(entities, this, Burrow.class)) {
-                GameScene.score.addPoints(100);
+
                 Burrow b = Collision.getOne(entities, this, Burrow.class);
                 if (!b.isFull()) {
                     if (Collision.specificCollision(entities, this, Bonus.class))

@@ -45,10 +45,10 @@ public class Turtle extends Entity {
     @Override
     public void movement (Long now){
         move(speed, 0);
-        if (getX() > 600 && speed > 0)
-            setX(-200);
-        if (getX() < -75 && speed < 0)
-            setX(600);
+        if (getX() > 500 && speed > 0)
+            setX(-180);
+        if (getX() < -50 && speed < 0)
+            setX(700);
 
         if ((now /3)/ 900000000 % 4 == 1) {
             setImage(turtleWet1);

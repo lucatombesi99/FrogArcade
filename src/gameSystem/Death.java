@@ -46,6 +46,7 @@ public class Death {
             frog.setY(475);
             death=true;
             GameScene.FROGGER_LIVES--;
+            GameScene.lifelost=true;
 
         }
         return death;
@@ -83,6 +84,7 @@ public class Death {
             frog.setY(475);
             death=true;
             GameScene.FROGGER_LIVES--;
+            GameScene.lifelost=true;
 
         }
         return death;
