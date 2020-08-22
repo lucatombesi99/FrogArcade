@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 
 
 public class Main extends Application {
@@ -147,7 +148,11 @@ public class Main extends Application {
 
         //ACTION ON BUTTON RANKING
         rankingButton.setOnAction(e-> {
-            RankingTable.scoreRecord();
+            try {
+                RankingTable.scoreRecord();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
             if (MenuActions.autoPlay)
                 MenuActions.mediaPlayer.pause();

@@ -12,9 +12,9 @@ import sample.Main;
 import java.io.File;
 import java.util.List;
 
+//modificato
 
-
-public class Frog extends Entity {
+public class Frog extends Entity { //da finire collisione con il coccodrillo
 
     private final static String jump = new File(Main.AUDIO_PATH + "jump.wav").toURI().toString();
     private final static AudioClip frogJump = new AudioClip(jump);
@@ -34,6 +34,7 @@ public class Frog extends Entity {
 
     double movementV = 31.2;
     double movementH = 15;
+    double crocSpeed=0; //serve per capire se si muove verso destra o sinistra
 
     boolean timeExpired=false;
     boolean isDeath = true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
@@ -154,7 +155,7 @@ public class Frog extends Entity {
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
-            GameScene.timeLeft=6;
+            GameScene.timeLeft=61;
 
 
         }
@@ -164,7 +165,7 @@ public class Frog extends Entity {
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
-            GameScene.timeLeft=6;
+            GameScene.timeLeft=61;
         }
 
 
@@ -187,25 +188,26 @@ public class Frog extends Entity {
                 Log log = Collision.getOne(entities, this, Log.class);
                 this.move(log.getSpeed(), 0);
 
-            }else if(Collision.specificCollision(entities, this, Crocodile.class) && !noMove){
+            }else  if(Collision.specificCollision(entities, this, Crocodile.class) && !noMove){
                 Crocodile croc=Collision.getOne(entities, this, Crocodile.class);
+                crocSpeed=croc.getSpeed();
                if(croc.isHungry())
 
-                    if(this.getX()>=(croc.getX()+65)){
+                    if((this.getX()>=croc.getX()+65 && crocSpeed>0) || (this.getX()<=croc.getX()+25 && crocSpeed<0)){
                         death = true;
                         isDeath = false;
                         noMove=true;
                         isDeath = Death.waterDeath(now, this);
                         GameScene.timeLeft=6;
                     }else
-                        this.move(croc.getSpeed(),0);
+                        this.move(crocSpeed,0);
 
             }else {
-                death = true;
+               death = true;
                 isDeath = false;
                 noMove=true;
                 isDeath = Death.waterDeath(now, this);
-                GameScene.timeLeft=6;
+                GameScene.timeLeft=61;
             }
 
         }
@@ -224,9 +226,8 @@ public class Frog extends Entity {
                     this.setX(135);
                     this.setY(475);
                     b.setFrogEnd();
-                    GameScene.timeLeft=6;
+                    GameScene.timeLeft=61;
                     RandomBonus.removePos((int) b.getX());
-                    RandomBonus.print();
                 } else {
                     death = true;
                     isDeath = false;

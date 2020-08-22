@@ -38,7 +38,7 @@ public class Crocodile extends Entity {
                 setImage(crocodile1Right);
                 hungry=true;
             }
-            else if (now / 900000000 % 2 == 0) {
+           else if (now / 900000000 % 2 == 0) {
                 setImage(crocodile2Right);
                 hungry=false;
             }

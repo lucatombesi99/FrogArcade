@@ -1,7 +1,10 @@
 package sample;
 
+
+import gameSystem.GameScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,17 +13,33 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
+import static sample.Main.IMAGE_PATH;
 
+//stramodificato
 public class RankingTable {
 
-    private static int numClickAdd = 0;
+
+    static String fileName = IMAGE_PATH+"RankingTable.csv";
+    static String charset = "UTF-8";
+    static PlayerData playerData=new PlayerData();
+    static int numScores=0;
+    static int numClick=0;
+
+    static List<Integer> scoreRecords= new ArrayList<>();;
+
 
     private static TextField nameInput;
     private static TableView<Player> table;
 
 
-    public static void scoreRecord() {
+    public static void scoreRecord() throws IOException {
 
         Stage scoreStage = new Stage();
         scoreStage.setTitle("Ranking");
@@ -29,9 +48,32 @@ public class RankingTable {
         nameInput = new TextField();
         nameInput.setPromptText("Player NAME");
 
+        //caricamento ranking
+        LinkedList<String[]> lstRows = FileManagment.read(fileName, charset);
+        for (String[] sArr : lstRows) {
+            playerData.add(new Player(sArr[0], Integer.parseInt(sArr[1])));
+            scoreRecords.add(Integer.parseInt(sArr[1]));
+        }
+        numScores = scoreRecords.size();
+        //sorting the scores in decreasing values
+        Collections.sort(scoreRecords, Collections.reverseOrder());
+
+
 
         Button addButton = new Button("Add");
-        addButton.setOnAction(e -> addButtonClicked());
+        if (numScores >9 && scoreRecords.get(9) > GameScene.points) {
+            addButton.setDisable(true);
+            nameInput.setDisable(true);
+
+        }
+
+        addButton.setOnAction(e -> {
+            try {
+                addButtonClicked(addButton);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
         Button resumeButton = new Button("Resume");
 
 
@@ -56,11 +98,14 @@ public class RankingTable {
         scoreColumn.setMinWidth(100);
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
 
+        if (numClick < 1) {
+            table = new TableView<>();
 
-        table = new TableView<>();
-        table.setItems(getPlayer());
-        //noinspection unchecked
-        table.getColumns().addAll(nameColumn, scoreColumn);
+            table.setItems(getPlayer(playerData));
+
+            //noinspection unchecked
+            table.getColumns().addAll(nameColumn, scoreColumn);
+        }
 
         gridPane.add(hBox, 0, 2);
 
@@ -73,36 +118,67 @@ public class RankingTable {
         scoreStage.show();
 
         resumeButton.setOnAction(e -> {
+            numClick++;
             scoreStage.close();
             MenuActions.autoPlay = true;
             MenuActions.mediaPlayer.play();
 
         });
 
+        scoreStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                numClick++;
+            }
+        });
 
     }
 
-    public static void addButtonClicked() {
-        Player player = new Player();
-        player.setName(nameInput.getText());
+    public static void addButtonClicked(Button button) throws IOException {
 
-        if (numClickAdd == 0) {
-            table.getItems().add(player);
+            Player player = new Player();
+            player.setName(nameInput.getText());
+            player.setScore(GameScene.points);
+            scoreRecords.add(GameScene.points);
+            playerData.add(player);
+            Collections.sort(scoreRecords, Collections.reverseOrder());
+            playerData=sortPlayers(playerData);
+            playerData.remove(9);
+            scoreRecords.remove(9);
+            FileManagment.write(fileName, charset, playerData.asListOfStringArray());
+            table.getItems().clear();
+            table.setItems(getPlayer(playerData));
             nameInput.clear();
-            numClickAdd++;
-        }
+
+        button.setDisable(true);
+
     }
 
 
-    public static ObservableList<Player> getPlayer(){
+    public static ObservableList<Player> getPlayer(PlayerData playerLst){
+
+        PlayerData sortedPlayers=sortPlayers(playerLst);
         ObservableList<Player> players = FXCollections.observableArrayList();
-        players.add(new Player("Christian", 125));
-        players.add(new Player("Christian", 825));
-        players.add(new Player("Christian", 225));
-        players.add(new Player("Christian", 325));
-        players.add(new Player("Christian", 925));
+        LinkedList<Player>  allPlayers= sortedPlayers.getListOfPlayers();
+        players.addAll(allPlayers);
+
+
+
+
+
         return players;
 
     }
+    public static PlayerData sortPlayers(PlayerData allplayers){
+        Player player;
+        for(int i=0;i<scoreRecords.size();i++)
+            for(int j=0;j<scoreRecords.size();j++)
+                if(scoreRecords.get(i)==allplayers.get(j).getScore()) {
+                    player = allplayers.get(j);
+                    allplayers.set(j, allplayers.get(i));
+                    allplayers.set(i, player);
+                }
+        return allplayers;
+    }
+
 }
 

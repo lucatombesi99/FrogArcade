@@ -35,9 +35,6 @@ public class RandomBonus {
         }
     }
 
-    public static void print() {
-        System.out.println(visible);
-    }
 }
 
 

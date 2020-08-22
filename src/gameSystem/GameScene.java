@@ -15,10 +15,11 @@ import sample.Main;
 import sample.RankingTable;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 
-public class GameScene {
+public class GameScene { //modificato qualcosa
 
 
     public AnimationTimer timer;
@@ -31,8 +32,9 @@ public class GameScene {
     public static Button pauseButton;
     Label difficultyLabel;
     Label timeLabel;
-    static double  timeLeft=5;
+    static double  timeLeft=60;
     private long lastUpdate = 0 ;
+    public static int points=0;
     public static AnchorPane backgroundScene;
     public static ImageView life1,life2,life3,life4,life5;
     ImageView backgroundImage;
@@ -239,7 +241,12 @@ public class GameScene {
                 if(GameScene.FROGGER_LIVES == 1 && !noMoreLives) {
                     GameScene.backgroundScene.getChildren().remove(GameScene.life1);
                     noMoreLives=true;
-                    RankingTable.scoreRecord();
+                    try {
+                        RankingTable.scoreRecord();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    timer.stop();
                 }
             }
         };
