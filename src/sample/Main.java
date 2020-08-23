@@ -72,7 +72,7 @@ public class Main extends Application {
         difficultyChoiceBox = new ChoiceBox<>();
         difficultyChoiceBox.setPrefSize(96.0,37.0);
         difficultyChoiceBox.getItems().addAll("EASY", "MEDIUM", "HARD");
-        difficultyChoiceBox.setValue("EASY");
+        difficultyChoiceBox.setValue("MEDIUM");
 
 
         //PULSANTE AUDIO Settings

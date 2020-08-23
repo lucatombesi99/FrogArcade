@@ -192,16 +192,16 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
             }else  if(Collision.specificCollision(entities, this, Crocodile.class) && !noMove){
                 Crocodile croc=Collision.getOne(entities, this, Crocodile.class);
                 crocSpeed=croc.getSpeed();
+                this.move(crocSpeed,0);
                if(croc.isHungry())
-
-                    if((this.getX()>=croc.getX()+65 && crocSpeed>0) || (this.getX()<=croc.getX()+25 && crocSpeed<0)){
+                   if((this.getX()>=croc.getX()+65 && crocSpeed>0) || (this.getX()<=croc.getX()+25 && crocSpeed<0)){
                         death = true;
                         isDeath = false;
                         noMove=true;
                         isDeath = Death.waterDeath(now, this);
                         GameScene.timeLeft=6;
-                    }else
-                        this.move(crocSpeed,0);
+                    }
+
 
             }else {
                death = true;

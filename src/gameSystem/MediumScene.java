@@ -40,22 +40,40 @@ public class MediumScene {
         //Entità
 
         //tronchi
-        Log firstLog1 = new Log(Main.IMAGE_PATH + "log3.png", 70, 230, 138, 1.0);
-        Log firstLog2 = new Log(Main.IMAGE_PATH + "log2.png", 90, 200, 170, -1.0);
-        Log firstLog3 = new Log(Main.IMAGE_PATH + "log3.png", 70, 170, 200, 1.0);
-        Log firstLog4 = new Log(Main.IMAGE_PATH + "log2.png", 90, 140, 229, -1.0);
-        Log firstLog5 = new Log(Main.IMAGE_PATH + "log3.png", 70, 110, 258, 1.0);
+        Log firstLog1 = new Log(Main.IMAGE_PATH + "log2.png", 90, 200, 138, 1.5);
+        Log firstLog6 = new Log(Main.IMAGE_PATH + "log3.png", 70, 400, 138, 1.5);
+        Log firstLog2 = new Log(Main.IMAGE_PATH + "log2.png", 90, 250, 170, -1.5);
+        Log firstLog7 = new Log(Main.IMAGE_PATH + "log3.png", 70, 450, 170, -1.5);
+        Log firstLog8 = new Log(Main.IMAGE_PATH + "log2.png", 90, 300, 200, 1.5);
+        Log firstLog3 = new Log(Main.IMAGE_PATH + "log3.png", 70, 500, 200, 1.5);
+        Log firstLog9 = new Log(Main.IMAGE_PATH + "log2.png", 90, 350, 229, -1.5);
+        Log firstLog4 = new Log(Main.IMAGE_PATH + "log3.png", 70, -100, 229, -1.5);
+        Log firstLog10 =new Log(Main.IMAGE_PATH + "log3.png", 70, 400, 258, 1.5);
+        Log firstLog5 = new Log(Main.IMAGE_PATH + "log2.png", 90, -50, 258, 1.5);
+        Log firstLog11 = new Log(Main.IMAGE_PATH + "log2.png", 90, -50, 138, 1.5);
+        Log firstLog12 = new Log(Main.IMAGE_PATH + "log3.png", 70, 0, 170, -1.5);
+        Log firstLog16 = new Log(Main.IMAGE_PATH + "log3.png", 70, 500, 138, 1.5);
+        Log firstLog17 = new Log(Main.IMAGE_PATH + "log3.png", 70, 650, 170, -1.5);
+        Log firstLog18 = new Log(Main.IMAGE_PATH + "log3.png", 70, -90, 200, 1.5);
+        Log firstLog19 = new Log(Main.IMAGE_PATH + "log3.png", 70, 700, 229, -1.5);
+        Log firstLog20 = new Log(Main.IMAGE_PATH + "log3.png", 70, -140, 258, 1.5);
 
-        backgroundScene.getChildren().addAll(firstLog1, firstLog2, firstLog3, firstLog4, firstLog5);
+        backgroundScene.getChildren().addAll(firstLog1,firstLog2,firstLog3,firstLog4,firstLog5,
+                                             firstLog6,firstLog7,firstLog8,firstLog9,firstLog10,
+                                             firstLog11,firstLog12,firstLog16,firstLog17,firstLog18,
+                                             firstLog19,firstLog20);
 
-        //macchine
-        Vehicle car1 = new Vehicle(Main.IMAGE_PATH + "car1Left.png", 30, 300, 321, -1.7);
-        Vehicle truck1 = new Vehicle(Main.IMAGE_PATH + "truck1Left.png", 60, 210,351, -1.3);
-        Vehicle car2 = new Vehicle(Main.IMAGE_PATH+ "car1Left.png", 30, 150, 382, -1.5);
-        Vehicle bigTruck1 = new Vehicle(Main.IMAGE_PATH + "truck2Right.png", 100, 75,413, 1.3);
-        Vehicle car3 = new Vehicle(Main.IMAGE_PATH + "car1Left.png", 30, 250, 444, -1.5);
+        //tartarughe
+        Turtle tur1=new Turtle(100,136,1.5,70);
+        Turtle tur2=new Turtle(150,168,-1.5,70);
+        Turtle tur3=new Turtle(200,198,1.5,70);
+        Turtle tur4=new Turtle(250,229,-1.5,70);
+        Turtle tur5=new Turtle(300,258,1.5,70);
+        Turtle tur6=new Turtle(50,198,1.5,70);
+        Turtle tur7=new Turtle(100,229,-1.5,70);
+        Turtle tur8=new Turtle(150,258,1.5,70);
 
-        backgroundScene.getChildren().addAll(car1, car2, car3, truck1, bigTruck1);
+        backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur4,tur5,tur6,tur7,tur8);
 
         //end
         Burrow bur1 = new Burrow(9, 102);
@@ -69,19 +87,24 @@ public class MediumScene {
         backgroundScene.getChildren().addAll(bur1, bur2, bur3, bur4, bur5, b);
 
 
-        //tartarughe   tur2 pos 170
-        Turtle tur1=new Turtle(150,138,1.0,70);
-        Turtle tur2=new Turtle(120,168,-1.0,70);
-        Turtle tur3=new Turtle(90,198,1.0,70);
-        Turtle tur4=new Turtle(60,229,-1.0,70);
-        Turtle tur5=new Turtle(30,258,1.0,70);
+        //macchine
+        Vehicle car1 = new Vehicle(Main.IMAGE_PATH + "car1Left.png", 30, 300, 321, -2.0);
+        Vehicle truck1 = new Vehicle(Main.IMAGE_PATH + "truck1Right.png", 60, 210,351, 1.5);
+        Vehicle car2 = new Vehicle(Main.IMAGE_PATH+ "car1Left.png", 30, 150, 382, -2.0);
+        Vehicle bigTruck1 = new Vehicle(Main.IMAGE_PATH + "truck2Right.png", 100, 75,413, 1.5);
+        Vehicle car3 = new Vehicle(Main.IMAGE_PATH + "car1Left.png", 30, 250, 444, -2.0);
+        Vehicle car4 = new Vehicle(Main.IMAGE_PATH + "car1Left.png", 30, 100, 321, -2.0);
+        Vehicle truck2 = new Vehicle(Main.IMAGE_PATH + "truck1Right.png", 60, 10,351, 1.5);
+        Vehicle car5 = new Vehicle(Main.IMAGE_PATH+ "car1Left.png", 30, -50, 382, -2.0);
+        Vehicle bigTruck2 = new Vehicle(Main.IMAGE_PATH + "truck2Right.png", 100, -100,413, 1.5);
+        Vehicle car6 = new Vehicle(Main.IMAGE_PATH + "car1Left.png", 30, 475, 444, -2.0);
+
 
         //serpente  et cocco
         Snake snake=new Snake(12,287,90,1.2);
-        Crocodile croc1=new Crocodile(50,164,90,1.5);
-        Crocodile croc2=new Crocodile(50,258,90,-1.5);
 
-        backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur5,tur4,snake,croc1,croc2);
+        backgroundScene.getChildren().addAll(car1, car2, car3, truck1, bigTruck1,
+                                             car4,truck2,car5,bigTruck2,car6,snake);
 
         //Vite
         life1 = new ImageView(lifeURL);

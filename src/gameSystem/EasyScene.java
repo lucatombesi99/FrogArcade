@@ -45,29 +45,40 @@ public class EasyScene  {
         //Entità
 
         //tronchi
-        Log firstLog1 = new Log(Main.IMAGE_PATH + "log2.png", 90, 230, 138, 1.0);
-        Log firstLog6 = new Log(Main.IMAGE_PATH + "log3.png", 70, -10, 138, 1.0);
-        Log firstLog2 = new Log(Main.IMAGE_PATH + "log2.png", 90, 200, 170, -1.0);
-        Log firstLog7 = new Log(Main.IMAGE_PATH + "log3.png", 70, 20, 170, -1.0);
-        Log firstLog8 = new Log(Main.IMAGE_PATH + "log2.png", 90, 90, 200, 1.0);
+        Log firstLog1 = new Log(Main.IMAGE_PATH + "log2.png", 90, 350, 138, 1.0);
+        Log firstLog6 = new Log(Main.IMAGE_PATH + "log3.png", 70, 200, 138, 1.0);
+        Log firstLog2 = new Log(Main.IMAGE_PATH + "log2.png", 90, 50, 170, -1.0);
+        Log firstLog7 = new Log(Main.IMAGE_PATH + "log3.png", 70, 250, 170, -1.0);
+        Log firstLog8 = new Log(Main.IMAGE_PATH + "log2.png", 90, 100, 200, 1.0);
         Log firstLog3 = new Log(Main.IMAGE_PATH + "log3.png", 70, 300, 200, 1.0);
-        Log firstLog9 = new Log(Main.IMAGE_PATH + "log2.png", 90, 24, 229, -1.0);
-        Log firstLog4 = new Log(Main.IMAGE_PATH + "log3.png", 70, 175, 229, -1.0);
-        Log firstLog10 =new Log(Main.IMAGE_PATH + "log3.png", 70, -30, 258, 1.0);
-        Log firstLog5 = new Log(Main.IMAGE_PATH + "log2.png", 90, 110, 258, 1.0);
-        Log firstLog11 = new Log(Main.IMAGE_PATH + "log2.png", 90, 320, 138, 1.0);
-        Log firstLog12 = new Log(Main.IMAGE_PATH + "log3.png", 70, 100, 170, -1.0);
-        Log firstLog13 = new Log(Main.IMAGE_PATH + "log2.png", 90, 200, 200, 1.0);
-        Log firstLog14 = new Log(Main.IMAGE_PATH + "log3.png", 70, 280, 229, -1.0);
-        Log firstLog15 = new Log(Main.IMAGE_PATH + "log2.png", 90, 320, 258, 1.0);
+        Log firstLog9 = new Log(Main.IMAGE_PATH + "log2.png", 90, 150, 229, -1.0);
+        Log firstLog4 = new Log(Main.IMAGE_PATH + "log3.png", 70, 350, 229, -1.0);
+        Log firstLog10 =new Log(Main.IMAGE_PATH + "log3.png", 70, 200, 258, 1.0);
+        Log firstLog5 = new Log(Main.IMAGE_PATH + "log2.png", 90, 400, 258, 1.0);
+        Log firstLog11 = new Log(Main.IMAGE_PATH + "log2.png", 90, 500, 138, 1.0);
+        Log firstLog12 = new Log(Main.IMAGE_PATH + "log3.png", 70, 450, 170, -1.0);
+        Log firstLog13 = new Log(Main.IMAGE_PATH + "log2.png", 90, 420, 200, 1.0);
+        Log firstLog14 = new Log(Main.IMAGE_PATH + "log3.png", 70, -50, 229, -1.0);
+        Log firstLog15 = new Log(Main.IMAGE_PATH + "log2.png", 90, 20, 258, 1.0);
+        Log firstLog16 = new Log(Main.IMAGE_PATH + "log3.png", 70, -50, 138, 1.0);
+        Log firstLog17 = new Log(Main.IMAGE_PATH + "log3.png", 70, 650, 170, -1.0);
+        Log firstLog18 = new Log(Main.IMAGE_PATH + "log3.png", 70, -90, 200, 1.0);
+        Log firstLog19 = new Log(Main.IMAGE_PATH + "log3.png", 70, 700, 229, -1.0);
+        Log firstLog20 = new Log(Main.IMAGE_PATH + "log3.png", 70, -140, 258, 1.0);
 
-        backgroundScene.getChildren().addAll(firstLog1, firstLog2, firstLog3, firstLog4, firstLog5,firstLog6,firstLog7,firstLog8,firstLog9,firstLog10,firstLog11,firstLog12,firstLog13,firstLog14,firstLog15);
+        backgroundScene.getChildren().addAll(firstLog1, firstLog2, firstLog3, firstLog4, firstLog5,
+                                             firstLog6,firstLog7,firstLog8,firstLog9,firstLog10,
+                                             firstLog11,firstLog12,firstLog13,firstLog14,firstLog15,
+                                             firstLog16,firstLog17,firstLog18,firstLog19,firstLog20);
         //tartarughe   tur2 pos 170
-        Turtle tur1=new Turtle(80,138,1.0,70);
-        Turtle tur2=new Turtle(300,168,-1.0,70);
-        Turtle tur3=new Turtle(-10,198,1.0,70);
-        Turtle tur4=new Turtle(370,229,-1.0,70);
-        Turtle tur5=new Turtle(250,258,1.0,70);
+        Turtle tur1=new Turtle(90,136,1.0,70);
+        Turtle tur2=new Turtle(150,168,-1.0,70);
+        Turtle tur3=new Turtle(200,198,1.0,70);
+        Turtle tur4=new Turtle(250,229,-1.0,70);
+        Turtle tur5=new Turtle(300,258,1.0,70);
+        Turtle tur6=new Turtle(300,138,1.0,70);
+        Turtle tur7=new Turtle(350,168,-1.0,70);
+
 
 
 

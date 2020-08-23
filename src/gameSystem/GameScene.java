@@ -96,12 +96,12 @@ public class GameScene { //modificato qualcosa
 
 
         List<Entity> interceptable=getEntity(Entity.class);
-        System.out.println(interceptable);
+        System.out.println();
 
         //rana
         Frog f = new Frog(Main.IMAGE_PATH +"froggerUp.png",scene,interceptable);
         root.getChildren().addAll(f);
-
+        System.out.println(root.getChildren());
 
         primaryStage.setScene(scene);
 
