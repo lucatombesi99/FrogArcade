@@ -47,6 +47,7 @@ public class Death {
             death=true;
             GameScene.FROGGER_LIVES--;
             GameScene.lifelost=true;
+            GameScene.points-=300/GameScene.diffMult;
 
         }
         return death;
@@ -85,6 +86,7 @@ public class Death {
             death=true;
             GameScene.FROGGER_LIVES--;
             GameScene.lifelost=true;
+            GameScene.points-=150/GameScene.diffMult;
 
         }
         return death;

@@ -30,18 +30,18 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
     Image imgA2;
     Image imgS2;
     Image imgD2;
-    Test test;
+
 
     double movementV = 31.2;
     double movementH = 15;
     double crocSpeed=0; //serve per capire se si muove verso destra o sinistra
 
     boolean timeExpired=false;
-    boolean isDeath = true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
-    boolean noMove=false;//per evitare che la rana continui a spostarsi se morta
+     boolean  isDeath = true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
+     boolean noMove=false;//per evitare che la rana continui a spostarsi se morta
     boolean carDeath=false;//per continuare a rimanere nell' if anche se finisce collisione
     private boolean singleClick = true;//per continuare a rimanere nell' if anche se finisce collisione
-    private static boolean death = false;
+    public static boolean death = false;
 
 
 
@@ -52,7 +52,6 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
         setImage(new Image(new File(link).toURI().toString(), size, size, true, true));
         setX(135);
         setY(475);
-        this.test= test;
         this.entities = interceptable;
         imgW1 = new Image(new File(Main.IMAGE_PATH + "froggerUp.png").toURI().toString(), size, size, true, true);
         imgA1 = new Image(new File(Main.IMAGE_PATH + "froggerLeft.png").toURI().toString(), size, size, true, true);
@@ -69,28 +68,28 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
 
             scene.setOnKeyPressed(event -> {
 
-                if (event.getCode() == KeyCode.W && singleClick && getY() > 120) {
+                if ((event.getCode() == KeyCode.W ||event.getCode()== KeyCode.UP  ) && singleClick && getY() > 120) {
                     singleClick = false;
                     if (isDeath) {
                         move(0, -movementV);
                         setImage(imgW2);
                     }
 
-                } else if (event.getCode() == KeyCode.A && singleClick && getX() > 10) {
+                } else if ((event.getCode() == KeyCode.A ||event.getCode()== KeyCode.LEFT  )  && singleClick && getX() > 10) {
                     singleClick = false;
                     if (isDeath) {
                         move(-movementH, 0);
                         setImage(imgA2);
                     }
 
-                } else if (event.getCode() == KeyCode.S && singleClick && getY() < 475) {
+                } else if ((event.getCode() == KeyCode.S ||event.getCode()== KeyCode.DOWN  )  && singleClick && getY() < 475) {
                     singleClick = false;
                     if (isDeath) {
                         move(0, movementV);
                         setImage(imgS2);
                     }
 
-                } else if (event.getCode() == KeyCode.D && singleClick && getX() < 330) {
+                } else if ((event.getCode() == KeyCode.D ||event.getCode()== KeyCode.RIGHT  )  && singleClick && getX() < 330) {
                     singleClick = false;
                     if (isDeath) {
                         move(movementH, 0);
@@ -105,29 +104,33 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
 
             scene.setOnKeyReleased(event -> {
 
-                if (event.getCode() == KeyCode.W) {
+                if (event.getCode() == KeyCode.W ||event.getCode()== KeyCode.UP  ) {
                     if (isDeath) {
                         setImage(imgW1);
                         singleClick = true;
                         frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
                     }
-                } else if (event.getCode() == KeyCode.A) {
+                } else if (event.getCode() == KeyCode.A ||event.getCode()== KeyCode.LEFT ) {
                     if (isDeath) {
                         setImage(imgA1);
                         singleClick = true;
                         frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
                     }
-                } else if (event.getCode() == KeyCode.S) {
+                } else if (event.getCode() == KeyCode.S ||event.getCode()== KeyCode.DOWN ) {
                     if(isDeath) {
                         setImage(imgS1);
                         singleClick = true;
                         frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
                     }
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (event.getCode() == KeyCode.D ||event.getCode()== KeyCode.RIGHT ) {
                     if(isDeath) {
                         setImage(imgD1);
                         singleClick = true;
                         frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
                     }
                 }
             });
@@ -139,6 +142,9 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
 
         if(getX()<0 || getX()>350 || getY()<0){
             death = true;
+            GameScene.lifelost=true;
+            GameScene.timeLeft=GameScene.timeMax;
+            GameScene.FROGGER_LIVES--;
             setX(135);
             setY(475);
         }
@@ -156,7 +162,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
-            GameScene.timeLeft=61;
+            GameScene.timeLeft=GameScene.timeMax;
 
 
         }
@@ -166,7 +172,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
-            GameScene.timeLeft=61;
+            GameScene.timeLeft=GameScene.timeMax;
         }
 
 
@@ -182,7 +188,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
                     isDeath = false;
                     noMove=true;
                     isDeath = Death.waterDeath(now, this);
-                    GameScene.timeLeft=6;
+                    GameScene.timeLeft=GameScene.timeMax;
                 }
 
             }else if (Collision.specificCollision(entities, this, Log.class) && !noMove) {
@@ -199,7 +205,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
                         isDeath = false;
                         noMove=true;
                         isDeath = Death.waterDeath(now, this);
-                        GameScene.timeLeft=6;
+                        GameScene.timeLeft=GameScene.timeMax;
                     }
 
 
@@ -208,7 +214,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
                 isDeath = false;
                 noMove=true;
                 isDeath = Death.waterDeath(now, this);
-                GameScene.timeLeft=61;
+                GameScene.timeLeft=GameScene.timeMax;
             }
 
         }
@@ -222,12 +228,14 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
                 Burrow b = Collision.getOne(entities, this, Burrow.class);
                 if (!b.isFull()) {
                     if (Collision.specificCollision(entities, this, Bonus.class))
-                        System.out.println("bonus");
+                        GameScene.points+=1000*GameScene.diffMult;
 
                     this.setX(135);
                     this.setY(475);
                     b.setFrogEnd();
-                    GameScene.timeLeft=61;
+                    GameScene.burrowCounter++;
+                    GameScene.points+=800*GameScene.diffMult;
+                    GameScene.timeLeft=GameScene.timeMax;
                     RandomBonus.removePos((int) b.getX());
                 } else {
                     death = true;

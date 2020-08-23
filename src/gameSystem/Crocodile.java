@@ -34,22 +34,22 @@ public class Crocodile extends Entity {
     public void movement(Long now) {
         move(speed,0);
         if(speed>0){
-            if (now / 900000000 % 2 == 1) {
+            if ((now/3/ 900000000 +((int)this.getY()/100) ) % 2 == 1) {
                 setImage(crocodile1Right);
                 hungry=true;
             }
-           else if (now / 900000000 % 2 == 0) {
+           else if ((now/3/ 900000000 +((int)this.getY()/100) )% 2 == 0) {
                 setImage(crocodile2Right);
                 hungry=false;
             }
 
 
         }else{
-            if (now / 900000000 % 2 == 1) {
+            if ((now/3/ 900000000 +((int)this.getY()/100) )% 2 == 1) {
                 setImage(crocodile1Left);
                 hungry=true;
 
-            }else if (now / 900000000 % 2 == 0) {
+            }else if ((now/3/ 900000000 +((int)this.getY()/100) ) % 2 == 0) {
                 setImage(crocodile2Left);
                 hungry=false;
             }

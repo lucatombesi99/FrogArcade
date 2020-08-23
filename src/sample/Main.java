@@ -19,15 +19,10 @@ public class Main extends Application {
 
     public final static String AUDIO_PATH = "Resources\\Audio\\";
     public final static String IMAGE_PATH = "Resources\\Images\\";
-
-
-
     final static int SCREEN_MENU_WIDTH = 460;
     final static int SCREEN_MENU_HEIGHT= 280;
-
-
-
-    public Scene scene;
+    public static Scene scene;
+    public static Stage primaryStage;
     Button playButton;
     Button exitButton;
     Button audioButton;
@@ -43,6 +38,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Main.primaryStage =primaryStage;
         primaryStage.setTitle("FROGGER THE GAME ");
         MenuActions.play();
 
@@ -110,6 +106,7 @@ public class Main extends Application {
         scene= new Scene(menuPane, SCREEN_MENU_WIDTH, SCREEN_MENU_HEIGHT);
 
 
+
         //ACTION ON BUTTON PLAY
         playButton.setOnAction(e->{
             MenuActions.stop();
@@ -123,8 +120,8 @@ public class Main extends Application {
             else
                 difficulty=2;
 
+            g.startGame(difficulty);
 
-            g.startGame(primaryStage,difficulty);
 
         });
 

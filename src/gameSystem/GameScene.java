@@ -9,7 +9,6 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.scene.control.*;
 import sample.Main;
 import sample.RankingTable;
@@ -26,10 +25,11 @@ public class GameScene { //modificato qualcosa
 
 
     Media media;
-    static double  timeLeft=61;//da modificare con le scene
+    public static double  timeLeft=61;//da modificare con le scene
+    public static double timeMax=61;
     private long lastUpdate = 0 ;
     public static int points=0;
-
+    public static int diffMult=0;
 
     public static int FROGGER_LIVES = 5; //da modificare con le scene
     public static boolean lifelost=false;
@@ -45,15 +45,29 @@ public class GameScene { //modificato qualcosa
     static AnchorPane root;
 
     public static MediaPlayer mediaPlayer;
+    ImageView win;
+    ImageView lost;
+    Image w = new Image(new File(Main.IMAGE_PATH + "win.png").toURI().toString(), 350, 500, true, true, false);
+    Image l = new Image(new File(Main.IMAGE_PATH + "gameover.png").toURI().toString(), 350, 500, true, true, false);
+    public static int burrowCounter=0;
 
 
 
 
 
-    public  void startGame(Stage primaryStage, int difficulty) {
+    public  void startGame( int difficulty) {
+        GameScene.FROGGER_LIVES-=difficulty;
+        GameScene.timeLeft-=(difficulty*15);
+        GameScene.timeMax-=(difficulty*15);
+        GameScene.diffMult=difficulty+5;
 
-        FROGGER_LIVES=FROGGER_LIVES-difficulty;
-        timeLeft=timeLeft-(difficulty*15);
+
+
+        win=new ImageView(w);
+        lost=new ImageView(l);
+        AnchorPane.setTopAnchor(win,220.0);
+        AnchorPane.setTopAnchor(lost,220.0);
+
 
         //MUSICA di SOTTOFONDO
         media = new Media(new File(Main.AUDIO_PATH + "theme.mp3").toURI().toString());
@@ -89,21 +103,25 @@ public class GameScene { //modificato qualcosa
         root.getChildren().addAll(timeLabel,pauseButton,scoreLabel);
 
         Scene scene = new Scene(root, 350, 505);
-        primaryStage.setScene(scene);
+        Main.primaryStage.setScene(scene);
 
-       startMoving();
-       timer.start();
 
 
         List<Entity> interceptable=getEntity(Entity.class);
-        System.out.println();
-
+        System.out.println(timeLeft);
+        System.out.println(FROGGER_LIVES);
+        System.out.println(points);
         //rana
         Frog f = new Frog(Main.IMAGE_PATH +"froggerUp.png",scene,interceptable);
-        root.getChildren().addAll(f);
-        System.out.println(root.getChildren());
 
-        primaryStage.setScene(scene);
+        root.getChildren().addAll(f);
+
+        startMoving();
+
+        timer.start();
+
+
+        Main.primaryStage.setScene(scene);
 
 
        pauseButton.setOnAction(e ->{
@@ -120,6 +138,7 @@ public class GameScene { //modificato qualcosa
                 for(Entity object: objects) {
                     object.movement(now);
                 }
+                scoreLabel.setText("Score: "+points);
                 if(now - lastUpdate >= 1_000_000_000) {
                     timeLeft--;
                     timeLabel.setText("Time: "+timeLeft);
@@ -129,14 +148,21 @@ public class GameScene { //modificato qualcosa
                 if(lifelost)
                     root.getChildren().remove(root.getChildren().size()-6);
 
-                if(FROGGER_LIVES==0){
+                if(FROGGER_LIVES==0 || burrowCounter==5){
+                    pauseButton.setDisable(true);
+                    mediaPlayer.pause();
                     try {
                         RankingTable.scoreRecord();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     timer.stop();
+                    if(FROGGER_LIVES==0)
+                        root.getChildren().add(lost);
+                    else
+                        root.getChildren().add(win);
                 }
+
 
             }
         };
@@ -151,7 +177,6 @@ public class GameScene { //modificato qualcosa
             }
         return someArray;
     }
-
 
 
 

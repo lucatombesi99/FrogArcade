@@ -2,6 +2,7 @@ package sample;
 
 
 import gameSystem.GameScene;
+import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -12,15 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
+import static gameSystem.GameScene.*;
 import static sample.Main.IMAGE_PATH;
+import static sample.Main.primaryStage;
 
 //stramodificato
 public class RankingTable {
@@ -31,8 +32,9 @@ public class RankingTable {
     static PlayerData playerData=new PlayerData();
     static int numScores=0;
     static int numClick=0;
+    AnimationTimer timer;
 
-    static List<Integer> scoreRecords= new ArrayList<>();;
+    static List<Integer> scoreRecords= new ArrayList<>();
 
 
     private static TextField nameInput;
@@ -43,6 +45,7 @@ public class RankingTable {
 
         Stage scoreStage = new Stage();
         scoreStage.setTitle("Ranking");
+        scoreStage.initModality(Modality.APPLICATION_MODAL);
 
         Text score = new Text("\t \t RANKING:\n");
         nameInput = new TextField();
@@ -56,7 +59,7 @@ public class RankingTable {
         }
         numScores = scoreRecords.size();
         //sorting the scores in decreasing values
-        Collections.sort(scoreRecords, Collections.reverseOrder());
+        scoreRecords.sort(Collections.reverseOrder());
 
 
 
@@ -119,17 +122,18 @@ public class RankingTable {
 
         resumeButton.setOnAction(e -> {
             numClick++;
-            scoreStage.close();
             MenuActions.autoPlay = true;
-            MenuActions.mediaPlayer.play();
+            if(FROGGER_LIVES==0 || burrowCounter==5) {
+                MenuActions.mediaPlayer.pause();
 
-        });
-
-        scoreStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent we) {
-                numClick++;
+            }else {
+                MenuActions.mediaPlayer.play();
             }
+            scoreStage.close();
         });
+
+
+        scoreStage.setOnCloseRequest(we -> numClick++);
 
     }
 
@@ -142,11 +146,13 @@ public class RankingTable {
             playerData.add(player);
             Collections.sort(scoreRecords, Collections.reverseOrder());
             playerData=sortPlayers(playerData);
-            playerData.remove(9);
-            scoreRecords.remove(9);
-            FileManagment.write(fileName, charset, playerData.asListOfStringArray());
+            if(scoreRecords.size()>10) {
+                playerData.remove(9);
+                scoreRecords.remove(9);
+            }
             table.getItems().clear();
             table.setItems(getPlayer(playerData));
+            FileManagment.write(fileName, charset, playerData.asListOfStringArray());
             nameInput.clear();
 
         button.setDisable(true);
@@ -179,6 +185,7 @@ public class RankingTable {
                 }
         return allplayers;
     }
+
 
 }
 

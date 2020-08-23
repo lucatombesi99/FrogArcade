@@ -52,8 +52,7 @@ public class HardScene {
         Log firstLog16 = new Log(Main.IMAGE_PATH + "log3.png", 70, 500, 138, 1.7);
         Log firstLog17 = new Log(Main.IMAGE_PATH + "log3.png", 70, 650, 170, -1.7);
         Log firstLog18 = new Log(Main.IMAGE_PATH + "log3.png", 70, -90, 200, 1.7);
-        Log firstLog19 = new Log(Main.IMAGE_PATH + "log3.png", 70, 650, 229, -1.7);
-        Log firstLog20 = new Log(Main.IMAGE_PATH + "log3.png", 70, -140, 258, 1.7);
+
 
 
         backgroundScene.getChildren().addAll(firstLog1, firstLog2, firstLog3, firstLog4, firstLog5,
