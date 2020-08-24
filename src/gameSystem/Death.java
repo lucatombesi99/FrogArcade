@@ -47,7 +47,9 @@ public class Death {
             death=true;
             GameScene.FROGGER_LIVES--;
             GameScene.lifelost=true;
+            Frog.isAFK=false;
             GameScene.points-=300/GameScene.diffMult;
+
 
         }
         return death;

@@ -38,7 +38,8 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
     double crocSpeed=0; //serve per capire se si muove verso destra o sinistra
 
     Scene game;
-    boolean timeExpired=false;
+
+    public static boolean isAFK=false;//per quando stai afk e il tempo finisce
      boolean  isDeath = true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
      boolean noMove=false;//per evitare che la rana continui a spostarsi se morta
     boolean carDeath=false;//per continuare a rimanere nell' if anche se finisce collisione
@@ -73,28 +74,32 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
 
 
 
-        if(getX()<0 || getX()>350 || getY()>505){
-            death = true;
-            GameScene.lifelost=true;
-            GameScene.timeLeft=GameScene.timeMax;
-            GameScene.FROGGER_LIVES--;
-            setX(135);
-            setY(475);
-        }
-
-        if(getY()==475 && getX()==135){
-            death=false;
-            noMove=false;
-            carDeath=false;
-            timeExpired=false;
-            GameScene.lifelost=false;
-        }
-
-        if(GameScene.timeLeft==0 || timeExpired) {
-            timeExpired=true;
+        if(getX()<0 || getX()>340 || getY()>505){
+            carDeath=true;
             death = true;
             isDeath = false;
             isDeath = Death.carDeath(now, this);
+            GameScene.timeLeft=GameScene.timeMax;
+
+        }
+
+        if(!isAFK)
+        if(getY()==475 && getX()==135 ){
+            death=false;
+            noMove=false;
+            carDeath=false;
+            GameScene.lifelost=false;
+            isAFK=false;
+        }
+
+        if(GameScene.timeLeft==0) {
+            carDeath=true;
+            death = true;
+            isDeath = false;
+            if(getY()==475 && getX()==135)
+                isAFK=true;
+            isDeath = Death.carDeath(now, this);
+
             GameScene.timeLeft=GameScene.timeMax;
 
 
