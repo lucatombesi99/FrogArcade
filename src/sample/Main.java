@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 
+
+
 public class Main extends Application {
 
     public final static String AUDIO_PATH = "Resources\\Audio\\";
@@ -60,7 +62,7 @@ public class Main extends Application {
 
 
         //PULSANTE AUDIO Settings
-        audioButton = new Button("AUDIO ON/OFF");
+        audioButton = new Button("AUDIO");
         audioButton.setPrefSize(96.0,37.0);
 
 

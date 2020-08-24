@@ -21,6 +21,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
 
      List<Entity> entities;
 
+     boolean printed=false;//da togliere
 
     Image imgW1;
     Image imgA1;
@@ -36,6 +37,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
     double movementH = 15;
     double crocSpeed=0; //serve per capire se si muove verso destra o sinistra
 
+    Scene game;
     boolean timeExpired=false;
      boolean  isDeath = true;//per evitare che i key pressed/realesed in eccesso spostino l'animazione della morte
      boolean noMove=false;//per evitare che la rana continui a spostarsi se morta
@@ -61,86 +63,17 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
         imgA2 = new Image(new File(Main.IMAGE_PATH + "froggerLeftJump.png").toURI().toString(), size, size, true, true);
         imgS2 = new Image(new File(Main.IMAGE_PATH + "froggerDownJump.png").toURI().toString(), size, size, true, true);
         imgD2 = new Image(new File(Main.IMAGE_PATH + "froggerRightJump.png").toURI().toString(), size, size, true, true);
+        game=scene;
 
-        //movimento
-        if (!death) {
-
-
-            scene.setOnKeyPressed(event -> {
-
-                if ((event.getCode() == KeyCode.W ||event.getCode()== KeyCode.UP  ) && singleClick && getY() > 120) {
-                    singleClick = false;
-                    if (isDeath) {
-                        move(0, -movementV);
-                        setImage(imgW2);
-                    }
-
-                } else if ((event.getCode() == KeyCode.A ||event.getCode()== KeyCode.LEFT  )  && singleClick && getX() > 10) {
-                    singleClick = false;
-                    if (isDeath) {
-                        move(-movementH, 0);
-                        setImage(imgA2);
-                    }
-
-                } else if ((event.getCode() == KeyCode.S ||event.getCode()== KeyCode.DOWN  )  && singleClick && getY() < 475) {
-                    singleClick = false;
-                    if (isDeath) {
-                        move(0, movementV);
-                        setImage(imgS2);
-                    }
-
-                } else if ((event.getCode() == KeyCode.D ||event.getCode()== KeyCode.RIGHT  )  && singleClick && getX() < 330) {
-                    singleClick = false;
-                    if (isDeath) {
-                        move(movementH, 0);
-                        setImage(imgD2);
-                    }
-                }
-            });
-        }
-
-        if (!death) {
-
-
-            scene.setOnKeyReleased(event -> {
-
-                if (event.getCode() == KeyCode.W ||event.getCode()== KeyCode.UP  ) {
-                    if (isDeath) {
-                        setImage(imgW1);
-                        singleClick = true;
-                        frogJump.play(20);
-                        GameScene.points+=5*GameScene.diffMult;
-                    }
-                } else if (event.getCode() == KeyCode.A ||event.getCode()== KeyCode.LEFT ) {
-                    if (isDeath) {
-                        setImage(imgA1);
-                        singleClick = true;
-                        frogJump.play(20);
-                        GameScene.points+=5*GameScene.diffMult;
-                    }
-                } else if (event.getCode() == KeyCode.S ||event.getCode()== KeyCode.DOWN ) {
-                    if(isDeath) {
-                        setImage(imgS1);
-                        singleClick = true;
-                        frogJump.play(20);
-                        GameScene.points+=5*GameScene.diffMult;
-                    }
-                } else if (event.getCode() == KeyCode.D ||event.getCode()== KeyCode.RIGHT ) {
-                    if(isDeath) {
-                        setImage(imgD1);
-                        singleClick = true;
-                        frogJump.play(20);
-                        GameScene.points+=5*GameScene.diffMult;
-                    }
-                }
-            });
-        }
     }
 
     @Override
     public void movement(Long now) {
+        control();
 
-        if(getX()<0 || getX()>350 || getY()<0){
+
+
+        if(getX()<0 || getX()>350 || getY()>505){
             death = true;
             GameScene.lifelost=true;
             GameScene.timeLeft=GameScene.timeMax;
@@ -167,6 +100,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
 
         }
 
+        if(getY()>260)
         if (Collision.specificCollision(entities, this, Vehicle.class) || Collision.specificCollision(entities, this, Snake.class) || carDeath) {
             carDeath=true;
             death = true;
@@ -226,7 +160,7 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
             if (Collision.specificCollision(entities, this, Burrow.class)) {
 
                 Burrow b = Collision.getOne(entities, this, Burrow.class);
-                if (!b.isFull()) {
+                if (!b.isFull() && this.getX()>b.getX()+12 && this.getX()<b.getX()+20) {
                     if (Collision.specificCollision(entities, this, Bonus.class))
                         GameScene.points+=1000*GameScene.diffMult;
 
@@ -254,27 +188,82 @@ public class Frog extends Entity { //da finire collisione con il coccodrillo
 
 
     }
+
+//gestisce i movimenti della rana
+    public void control(){
+        if (!death) {
+
+
+            game.setOnKeyPressed(event -> {
+
+                if ((event.getCode() == KeyCode.W ||event.getCode()== KeyCode.UP  ) && singleClick && getY() > 120) {
+                    singleClick = false;
+                    if (isDeath) {
+                        move(0, -movementV);
+                        setImage(imgW2);
+                    }
+
+                } else if ((event.getCode() == KeyCode.A ||event.getCode()== KeyCode.LEFT  )  && singleClick ) {
+                    singleClick = false;
+                    if (isDeath) {
+                        move(-movementH, 0);
+                        setImage(imgA2);
+                    }
+
+                } else if ((event.getCode() == KeyCode.S ||event.getCode()== KeyCode.DOWN  )  && singleClick) {
+                    singleClick = false;
+                    if (isDeath) {
+                        move(0, movementV);
+                        setImage(imgS2);
+                    }
+
+                } else if ((event.getCode() == KeyCode.D ||event.getCode()== KeyCode.RIGHT  )  && singleClick) {
+                    singleClick = false;
+                    if (isDeath) {
+                        move(movementH, 0);
+                        setImage(imgD2);
+                    }
+                }
+            });
+        }
+
+        if (!death) {
+
+
+            game.setOnKeyReleased(event -> {
+
+                if (event.getCode() == KeyCode.W ||event.getCode()== KeyCode.UP  ) {
+                    if (isDeath) {
+                        setImage(imgW1);
+                        singleClick = true;
+                        frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
+                    }
+                } else if (event.getCode() == KeyCode.A ||event.getCode()== KeyCode.LEFT ) {
+                    if (isDeath) {
+                        setImage(imgA1);
+                        singleClick = true;
+                        frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
+                    }
+                } else if (event.getCode() == KeyCode.S ||event.getCode()== KeyCode.DOWN ) {
+                    if(isDeath) {
+                        setImage(imgS1);
+                        singleClick = true;
+                        frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
+                    }
+                } else if (event.getCode() == KeyCode.D ||event.getCode()== KeyCode.RIGHT ) {
+                    if(isDeath) {
+                        setImage(imgD1);
+                        singleClick = true;
+                        frogJump.play(20);
+                        GameScene.points+=5*GameScene.diffMult;
+                    }
+                }
+            });
+        }
+    }
 }
 
 
-
-
-
-
-
-
-   /* perchè non funge?
-       if (collision.specificCollision(entities, this, Log.class) && !noMove) {
-
-                Log log = collision.getOne(entities, this, Log.class);
-                this.move(log.getSpeed(), 0);
-
-            }else if(collision.specificCollision(entities, this, Turtle.class) && !noMove) {
-                test.setTwo();
-                Turtle turtle = collision.getOne(entities, this, Turtle.class);
-              //  if(turtle!=null)
-                //    test.setThree();
-
-                this.move(turtle.getSpeed(), 0);
-
-*/

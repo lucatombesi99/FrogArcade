@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import static sample.RankingTable.enableAddButton;
+
 
 public class GameScene { //modificato qualcosa
 
@@ -27,11 +29,11 @@ public class GameScene { //modificato qualcosa
     Media media;
     public static double  timeLeft=61;//da modificare con le scene
     public static double timeMax=61;
-    private long lastUpdate = 0 ;
-    public static int points=0;
+    private long lastUpdate = 0 ;//per aggiornare il timer ogni secondo
+    public static int points;
     public static int diffMult=0;
 
-    public static int FROGGER_LIVES = 5; //da modificare con le scene
+    public static int FROGGER_LIVES=5 ; //da modificare con le scene
     public static boolean lifelost=false;
     EasyScene easy=new EasyScene();
     MediumScene medium=new MediumScene();
@@ -56,11 +58,14 @@ public class GameScene { //modificato qualcosa
 
 
     public  void startGame( int difficulty) {
+        GameScene.FROGGER_LIVES=5;
+        GameScene.timeLeft=61;
+        GameScene.timeMax=61;
         GameScene.FROGGER_LIVES-=difficulty;
         GameScene.timeLeft-=(difficulty*15);
         GameScene.timeMax-=(difficulty*15);
         GameScene.diffMult=difficulty+5;
-
+        points=0;
 
 
         win=new ImageView(w);
@@ -149,6 +154,7 @@ public class GameScene { //modificato qualcosa
                     root.getChildren().remove(root.getChildren().size()-6);
 
                 if(FROGGER_LIVES==0 || burrowCounter==5){
+                    enableAddButton=true;
                     pauseButton.setDisable(true);
                     mediaPlayer.pause();
                     try {

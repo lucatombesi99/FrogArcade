@@ -2,10 +2,9 @@ package sample;
 
 
 import gameSystem.GameScene;
-import javafx.animation.AnimationTimer;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +14,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.util.*;
 
@@ -32,7 +30,7 @@ public class RankingTable {
     static PlayerData playerData=new PlayerData();
     static int numScores=0;
     static int numClick=0;
-    AnimationTimer timer;
+    public static boolean enableAddButton; //serve per impedire che si aggiungano risultati nei momenti sbagliati
 
     static List<Integer> scoreRecords= new ArrayList<>();
 
@@ -52,10 +50,12 @@ public class RankingTable {
         nameInput.setPromptText("Player NAME");
 
         //caricamento ranking
-        LinkedList<String[]> lstRows = FileManagment.read(fileName, charset);
-        for (String[] sArr : lstRows) {
-            playerData.add(new Player(sArr[0], Integer.parseInt(sArr[1])));
-            scoreRecords.add(Integer.parseInt(sArr[1]));
+        if(numClick<1) {
+            LinkedList<String[]> lstRows = FileManagment.read(fileName, charset);
+            for (String[] sArr : lstRows) {
+                playerData.add(new Player(sArr[0], Integer.parseInt(sArr[1])));
+                scoreRecords.add(Integer.parseInt(sArr[1]));
+            }
         }
         numScores = scoreRecords.size();
         //sorting the scores in decreasing values
@@ -63,12 +63,11 @@ public class RankingTable {
 
 
 
-        Button addButton = new Button("Add");
-        if (numScores >9 && scoreRecords.get(9) > GameScene.points) {
-            addButton.setDisable(true);
-            nameInput.setDisable(true);
+         Button addButton = new Button("Add");
+         addButton.setDisable(!enableAddButton);
 
-        }
+        if (numScores >9 && scoreRecords.get(9) > GameScene.points)
+            addButton.setDisable(true);
 
         addButton.setOnAction(e -> {
             try {
@@ -123,8 +122,9 @@ public class RankingTable {
         resumeButton.setOnAction(e -> {
             numClick++;
             MenuActions.autoPlay = true;
-            if(FROGGER_LIVES==0 || burrowCounter==5) {
+            if(FROGGER_LIVES==0 || burrowCounter==5) {//reset del game
                 MenuActions.mediaPlayer.pause();
+                primaryStage.setScene(Main.scene);
 
             }else {
                 MenuActions.mediaPlayer.play();
@@ -140,22 +140,28 @@ public class RankingTable {
     public static void addButtonClicked(Button button) throws IOException {
 
             Player player = new Player();
-            player.setName(nameInput.getText());
-            player.setScore(GameScene.points);
-            scoreRecords.add(GameScene.points);
-            playerData.add(player);
-            Collections.sort(scoreRecords, Collections.reverseOrder());
-            playerData=sortPlayers(playerData);
-            if(scoreRecords.size()>10) {
-                playerData.remove(9);
-                scoreRecords.remove(9);
-            }
-            table.getItems().clear();
-            table.setItems(getPlayer(playerData));
-            FileManagment.write(fileName, charset, playerData.asListOfStringArray());
-            nameInput.clear();
+            String name=nameInput.getText();
+            if(!name.equals("") && !name.contains(";")) {
+                player.setName(name);
+                player.setScore(GameScene.points);
+                scoreRecords.add(GameScene.points);
+                playerData.add(player);
+                Collections.sort(scoreRecords, Collections.reverseOrder());
+                playerData = sortPlayers(playerData);
+                if (scoreRecords.size() > 10) {
+                    playerData.remove(playerData.size()-1);
+                    scoreRecords.remove(scoreRecords.size()-1);
+                }
+                table.getItems().clear();
+                table.setItems(getPlayer(playerData));
+                FileManagment.write(fileName, charset, playerData.asListOfStringArray());
+                nameInput.clear();
 
-        button.setDisable(true);
+                enableAddButton = false;
+                button.setDisable(true);
+            }else
+                System.out.println("non valido");
+
 
     }
 
