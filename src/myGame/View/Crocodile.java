@@ -2,8 +2,6 @@ package myGame.View;
 
 
 import javafx.scene.image.Image;
-
-
 import java.io.File;
 
 
@@ -37,28 +35,24 @@ public class Crocodile extends Entity {
         if (speed > 0) {
             if ((now / 3 / 900000000 + ((int) this.getY() / 100)) % 2 == 1) {
                 setImage(crocodile1Right);
-
             } else if ((now / 3 / 900000000 + ((int) this.getY() / 100)) % 2 == 0) {
                 setImage(crocodile2Right);
-
             }
 
 
         } else {
             if ((now / 3 / 900000000 + ((int) this.getY() / 100)) % 2 == 1) {
                 setImage(crocodile1Left);
-
-
             } else if ((now / 3 / 900000000 + ((int) this.getY() / 100)) % 2 == 0) {
                 setImage(crocodile2Left);
-
             }
         }
+
+
         if (getX() > 500 && speed > 0)
             setX(-180);
         if (getX() < -50 && speed < 0)
             setX(700);
-
     }
 
 }

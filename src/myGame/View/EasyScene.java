@@ -21,8 +21,6 @@ public class EasyScene  {
 
     public AnchorPane setScene() {
 
-
-
         backgroundScene = new AnchorPane();
         backgroundScene.maxHeight(400);
         backgroundScene.maxWidth(800);
@@ -40,7 +38,6 @@ public class EasyScene  {
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
         backgroundScene.getChildren().addAll(backgroundImage);
 
-        //Entità
 
         //tronchi
         Log firstLog1 = new Log(0, 350, 138, 1.0);
@@ -68,6 +65,8 @@ public class EasyScene  {
                 firstLog6,firstLog7,firstLog8,firstLog9,firstLog10,
                 firstLog11,firstLog12,firstLog13,firstLog14,firstLog15,
                 firstLog16,firstLog17,firstLog18,firstLog19,firstLog20);
+
+
         //tartarughe   tur2 pos 170
         Turtle tur1=new Turtle(90,136,1.0);
         Turtle tur2=new Turtle(150,168,-1.0);
@@ -75,11 +74,8 @@ public class EasyScene  {
         Turtle tur4=new Turtle(250,229,-1.0);
         Turtle tur5=new Turtle(300,258,1.0);
 
-
-
-
-
         backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur4,tur5);
+
 
         //macchine
         Vehicle car1 = new Vehicle(1, 300, 321, -1.7);
@@ -90,18 +86,16 @@ public class EasyScene  {
 
         backgroundScene.getChildren().addAll(car1, car2, car3, truck1, bigTruck1);
 
+
         //end
         Burrow bur1 = new Burrow(9, 102);
         Burrow bur2 = new Burrow(83, 102);
         Burrow bur3 = new Burrow(158, 102);
         Burrow bur4 = new Burrow(233, 102);
         Burrow bur5 = new Burrow(308, 102);
-
         Bonus b = new Bonus();
 
         backgroundScene.getChildren().addAll(bur1, bur2, bur3, bur4, bur5, b);
-
-
 
 
         //Vite
@@ -126,9 +120,6 @@ public class EasyScene  {
         life5.setY(50);
 
         backgroundScene.getChildren().addAll(life1,life2,life3, life4, life5,difficultyLabel);
-
-
-
 
 
         return  backgroundScene;

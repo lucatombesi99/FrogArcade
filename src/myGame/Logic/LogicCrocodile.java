@@ -1,9 +1,6 @@
 package myGame.Logic;
 
 
-import javafx.scene.paint.Color;
-
-
 
 public class LogicCrocodile extends LogicEntities {
     private final double speed;
@@ -16,7 +13,6 @@ public class LogicCrocodile extends LogicEntities {
         setY(yPos);
         setWidth(90);
         setHeight(26.526);
-        setFill(Color.YELLOW);
 
     }
 
@@ -32,7 +28,6 @@ public class LogicCrocodile extends LogicEntities {
             hungry = true;
         else if ((now/3/ 900000000 +((int)this.getY()/100) )% 2 == 0)
             hungry = false;
-
 
 
         if (getX()>500 && speed>0)

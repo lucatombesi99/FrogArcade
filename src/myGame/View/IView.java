@@ -6,19 +6,19 @@ public interface  IView {
 
        int getDifficulty();
 
-       void ViewMovement(long now);
+       void updateView(long now);
 
-      int getNumberOfEntites();
+       int getNumberOfEntites();
 
        double[] getEntity(int index);
 
-      Scene getScene();
+       Scene getScene();
 
-      boolean getLifeLost();
+       boolean getLifeLost();
 
-      boolean getTimerActive();
+       boolean getTimerActive();
 
-      boolean updateIsStarted();
+       boolean updateIsStarted();
 
 
 }

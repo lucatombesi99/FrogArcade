@@ -16,7 +16,7 @@ public class MenuScene {
     public final static String AUDIO_PATH = "Resources\\Audio\\";
     public final static String IMAGE_PATH = "Resources\\Images\\";
     public static boolean autoPlay = true;
-    static Media bkMusic = new Media(new File(AUDIO_PATH + "Frogger myGame.Main Song Theme (loop).mp3").toURI().toString());
+    static Media bkMusic = new Media(new File(AUDIO_PATH + "FroggerTheme.mp3").toURI().toString());
     public static MediaPlayer mediaPlayer = new MediaPlayer(bkMusic);
     public static Scene mainScene;
 
@@ -101,7 +101,6 @@ public void getMenuScene(){
         else
             GameScene.difficulty=2;
 
-        System.out.println("daje");
         ViewVariables.restarted=false;
 
         sc.startGame();
@@ -141,12 +140,7 @@ public void getMenuScene(){
         if (autoPlay)
             mediaPlayer.pause();
     });
-
-    //Action if x button is clicked
-   // primaryStage.setOnCloseRequest(we ->  {
-       // confirmation(we);
-    //});
-
+    
     mainScene= new Scene(menuPane, 460, 280);
 }
 

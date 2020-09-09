@@ -1,11 +1,9 @@
 package myGame.Logic;
 
 
-
 public class LogicLog extends LogicEntities {
 
     private final double speed;
-
 
     public LogicLog( int type,double x, double y, double speed) {
         setX(x+1);
@@ -17,8 +15,6 @@ public class LogicLog extends LogicEntities {
         }else {
             setWidth(70);
             setHeight(17.5);
-
-
         }
 
     }

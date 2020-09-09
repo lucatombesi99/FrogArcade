@@ -5,9 +5,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-
-
 import java.io.File;
+
 
 public class MediumScene {
 
@@ -19,8 +18,6 @@ public class MediumScene {
 
 
     public AnchorPane setScene() {
-
-
 
         backgroundScene = new AnchorPane();
         backgroundScene.maxHeight(400);
@@ -37,7 +34,6 @@ public class MediumScene {
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
         backgroundScene.getChildren().addAll(backgroundImage);
 
-        //Entità
 
         //tronchi
         Log firstLog1 = new Log(0, 200, 138, 1.5);
@@ -63,6 +59,7 @@ public class MediumScene {
                 firstLog11,firstLog12,firstLog16,firstLog17,firstLog18,
                 firstLog19,firstLog20);
 
+
         //tartarughe
         Turtle tur1=new Turtle(100,136,1.5);
         Turtle tur2=new Turtle(150,168,-1.5);
@@ -75,13 +72,13 @@ public class MediumScene {
 
         backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur4,tur5,tur6,tur7,tur8);
 
+
         //end
         Burrow bur1 = new Burrow(9, 102);
         Burrow bur2 = new Burrow(83, 102);
         Burrow bur3 = new Burrow(158, 102);
         Burrow bur4 = new Burrow(233, 102);
         Burrow bur5 = new Burrow(308, 102);
-
         Bonus b = new Bonus();
 
         backgroundScene.getChildren().addAll(bur1, bur2, bur3, bur4, bur5, b);
@@ -99,12 +96,12 @@ public class MediumScene {
         Vehicle bigTruck2 = new Vehicle(3, -100,413, 1.5);
         Vehicle car6 = new Vehicle(1,  475, 444, -2.0);
 
-
-        //serpente  et cocco
+        //serpente
         Snake snake=new Snake(12,287,1.2);
 
         backgroundScene.getChildren().addAll(car1, car2, car3, truck1, bigTruck1,
                 car4,truck2,car5,bigTruck2,car6,snake);
+
 
         //Vite
         life1 = new ImageView(lifeURL);
@@ -125,10 +122,6 @@ public class MediumScene {
 
 
         backgroundScene.getChildren().addAll(life1,life2,life3, life4,difficultyLabel);
-
-
-
-
 
         return  backgroundScene;
     }

@@ -1,9 +1,6 @@
 package myGame.Logic;
 
 
-import javafx.scene.paint.Color;
-
-
 
 public class LogicBurrow extends LogicEntities{
 
@@ -14,7 +11,6 @@ public class LogicBurrow extends LogicEntities{
         setY(y);
         setHeight(31);
         setWidth(29);
-        setFill(Color.RED);
     }
 
     public void setFrogEnd(){

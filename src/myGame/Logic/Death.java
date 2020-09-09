@@ -35,7 +35,6 @@ public class Death {
             LogicFrog.isAFK=false;
             LogicFrog.points-=300/LogicFrog.diffMult;
 
-
         }
         return death;
     }
@@ -51,7 +50,6 @@ public class Death {
         if(watD==1) {
             LogicFrog.position=12;
         }
-
 
         if(watD==2) {
             LogicFrog.position=13;

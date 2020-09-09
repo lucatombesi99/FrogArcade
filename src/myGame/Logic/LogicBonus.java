@@ -2,9 +2,6 @@ package myGame.Logic;
 
 
 
-import javafx.scene.paint.Color;
-
-
 public class LogicBonus extends LogicEntities{
     private double xPos = -100;
     public static double newPos;
@@ -14,7 +11,6 @@ public class LogicBonus extends LogicEntities{
         setY(107);
         setWidth(25);
         setHeight(16.21);
-        setFill(Color.BLACK);
     }
 
 

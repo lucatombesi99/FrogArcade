@@ -34,7 +34,6 @@ public class Vehicle extends Entity {
         setY(yPos);
         this.speed= speed;
 
-
     }
 
 

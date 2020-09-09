@@ -1,10 +1,6 @@
 package myGame.Logic;
 
 
-import javafx.scene.paint.Color;
-
-
-
 public class LogicSnake extends LogicEntities{
     private  double speed;
 
@@ -15,7 +11,7 @@ public class LogicSnake extends LogicEntities{
         setY(yPos);
         setWidth(70);
         setHeight(26.25);
-        setFill(Color.GREEN);
+
 
     }
 

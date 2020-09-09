@@ -1,7 +1,6 @@
 package myGame.View;
 
 import javafx.scene.image.Image;
-
 import java.io.File;
 
 

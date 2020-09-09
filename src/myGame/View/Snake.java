@@ -2,10 +2,7 @@ package myGame.View;
 
 
 import javafx.scene.image.Image;
-
-
 import java.io.File;
-
 
 
 public class Snake extends Entity {
@@ -39,19 +36,19 @@ public class Snake extends Entity {
         if(speed>0) {
             if (now / 900000000 % 2 == 1) {
                 setImage(snake1Right);
-
             } else if (now / 900000000 % 2 == 0) {
                 setImage(snake2Right);
             }
+
         }else{
             if (now / 900000000 % 2 == 1) {
                 setImage(snake1Left);
-
             } else if (now / 900000000 % 2 == 0) {
                 setImage(snake2Left);
             }
         }
     }
+
     public double getSpeed(){
         return  this.speed;
     }

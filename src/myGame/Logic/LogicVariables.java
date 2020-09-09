@@ -11,7 +11,7 @@ import static myGame.Logic.LogicBonus.newPos;
 import static myGame.Logic.LogicFrog.*;
 
 
-public class LogicVariables implements iLogic {
+public class LogicVariables implements ILogic {
 
 private  IView view;
 private static boolean timerActive=false;
@@ -59,11 +59,11 @@ public void setDifficulty(){
 
     public void setLifelost(){
             lifeLost=view.getLifeLost();
-            System.out.println(lifeLost);
+
     }
 
     @Override
-    public void LogicMovement(long now) {
+    public void updateLogic(long now) {
         updateTimer();
         if (!isStarted) {
             setLifelost();

@@ -5,10 +5,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-
 import java.io.File;
 
 public class HardScene {
+
     Label difficultyLabel;
     public static AnchorPane backgroundScene;
     ImageView backgroundImage;
@@ -17,8 +17,6 @@ public class HardScene {
 
 
     public AnchorPane setScene() {
-
-
 
         backgroundScene = new AnchorPane();
         backgroundScene.maxHeight(400);
@@ -35,7 +33,6 @@ public class HardScene {
         AnchorPane.setTopAnchor(backgroundImage, 40.0);
         backgroundScene.getChildren().addAll(backgroundImage);
 
-        //Entità
 
         //tronchi
         Log firstLog1 = new Log(0, 250, 138, 1.7);
@@ -52,11 +49,10 @@ public class HardScene {
         Log firstLog17 = new Log(1, 650, 170, -1.7);
         Log firstLog18 = new Log(1, -90, 200, 1.7);
 
-
-
         backgroundScene.getChildren().addAll(firstLog1, firstLog2, firstLog3, firstLog4, firstLog5,
                 firstLog6,firstLog7,firstLog8,firstLog9,firstLog10,
                 firstLog16,firstLog17,firstLog18);
+
 
         //tartarughe
         Turtle tur1=new Turtle(150,138,1.7);
@@ -70,17 +66,17 @@ public class HardScene {
 
         backgroundScene.getChildren().addAll(tur1,tur2,tur3,tur5,tur4,tur6,tur7,tur8);
 
+
         //end
         Burrow bur1 = new Burrow(9, 102);
         Burrow bur2 = new Burrow(83, 102);
         Burrow bur3 = new Burrow(158, 102);
         Burrow bur4 = new Burrow(233, 102);
         Burrow bur5 = new Burrow(308, 102);
-
-
         Bonus b = new Bonus();
 
         backgroundScene.getChildren().addAll(bur1, bur2, bur3, bur4, bur5, b);
+
 
         //macchine
         Vehicle car1 = new Vehicle(1,  300, 321, -2.5);
@@ -93,7 +89,6 @@ public class HardScene {
         Vehicle car5 = new Vehicle(1,  -50, 382, -2.5);
         Vehicle bigTruck2 = new Vehicle(3, -100,413, 2.0);
         Vehicle car6 = new Vehicle(1,  475, 444, -2.5);
-
 
 
         //serpente  et cocco
@@ -116,12 +111,7 @@ public class HardScene {
         life3.setX(270);
         life3.setY(50);
 
-
-
         backgroundScene.getChildren().addAll(life1,life2,life3,difficultyLabel);
-
-
-
 
 
         return  backgroundScene;

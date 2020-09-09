@@ -17,7 +17,7 @@ import java.util.*;
 
 import static myGame.View.MenuScene.IMAGE_PATH;
 
-//stramodificato
+
 public class RankingTable {
 
 
@@ -90,12 +90,12 @@ public class RankingTable {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
 
-        //Column name
+        //Colonna name
         TableColumn<Player, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setMinWidth(200);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        //Column score
+        //Colonna score
         TableColumn<Player, String> scoreColumn = new TableColumn<>("Score");
         scoreColumn.setMinWidth(100);
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
@@ -125,6 +125,7 @@ public class RankingTable {
             if(GameScene.FROGGER_LIVES==0 || GameScene.burrowCounter==5) {//reset del game
                 MenuScene.mediaPlayer.pause();
                 ViewVariables.sceneManager=0;
+                MenuScene.mediaPlayer.play();
 
             }else {
                 MenuScene.mediaPlayer.play();
@@ -139,6 +140,7 @@ public class RankingTable {
             if(GameScene.FROGGER_LIVES==0 || GameScene.burrowCounter==5) {//reset del game
                 MenuScene.mediaPlayer.pause();
                 ViewVariables.sceneManager=0;
+                MenuScene.mediaPlayer.play();
 
             }else {
                 MenuScene.mediaPlayer.play();

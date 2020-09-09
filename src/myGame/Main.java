@@ -10,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
 import java.util.Optional;
 
 
@@ -39,17 +38,18 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        primaryStage.setOnCloseRequest(we -> confirmation(we));
+        primaryStage.setOnCloseRequest(Main::confirmation);
+
 
         timer=new AnimationTimer() {
             @Override
             public void handle(long now) {
                 sceneManager = view.getSceneManager();
                 if(view.getTimerActive() && time) {
-                    logic.LogicMovement(now);
-                    view.ViewMovement(now);
-
+                    logic.updateLogic(now);
+                    view.updateView(now);
                 }
+
                 if(sceneManager==0) {
                     primaryStage.setScene(menuScene);
                     waitingtoStart = true;
@@ -72,8 +72,8 @@ public class Main extends Application {
                 }
             }
         };
-        timer.start();
 
+        timer.start();
     }
 
 
@@ -98,6 +98,6 @@ public class Main extends Application {
             timer.start();
             e.consume();
         }
-
     }
+
 }

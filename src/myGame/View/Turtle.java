@@ -1,7 +1,6 @@
 package myGame.View;
 
 import javafx.scene.image.Image;
-
 import java.io.File;
 
 
@@ -16,9 +15,6 @@ public class Turtle extends Entity {
     Image turtleWet3;
 
 
-
-
-
     public Turtle(int xPos, int yPos, double speed) {
         turtle1 = new Image(new File(MenuScene.IMAGE_PATH+ "TurtleAnimation1.png").toURI().toString(), 70, 30, true, true);
         turtle2 = new Image(new File(MenuScene.IMAGE_PATH + "TurtleAnimation2.png").toURI().toString(), 70, 30,true, true);
@@ -30,7 +26,6 @@ public class Turtle extends Entity {
         setY(yPos);
         this.speed = speed;
         setImage(turtle2);
-
 
     }
 
@@ -48,24 +43,19 @@ public class Turtle extends Entity {
 
         if ((now/3/ 900000000 +((int)this.getY()/100) )% 4 == 1) {
             setImage(turtleWet1);
-
         } else if ((now/3/900000000+((int)this.getY()/100))% 4 == 2) {
             setImage(turtleWet2);
-
         } else if ((now/3/ 900000000 +((int)this.getY()/100) )% 4== 3) {
             setImage(turtleWet3);
-
         } else if ((now/3/ 900000000 +((int)this.getY()/100) ) % 4== 0) {
             setImage(turtle2);
-
-
         } else if ((now/3/ 900000000 +((int)this.getY()/100) ) % 3== 1) {
             setImage(turtle1);
-
         } else if ((now/3/ 900000000 +((int)this.getY()/100) )% 3== 2) {
             setImage(turtle3);
 
         }
+
 
     }
 

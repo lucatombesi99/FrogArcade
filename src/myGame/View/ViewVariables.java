@@ -1,7 +1,7 @@
 package myGame.View;
 
 
-import myGame.Logic.iLogic;
+import myGame.Logic.ILogic;
 import javafx.event.Event;
 import javafx.scene.Scene;
 
@@ -15,14 +15,14 @@ public class ViewVariables implements IView {
 
     public static boolean restarted=false;
     public static Event exitEvent;
-    private iLogic logic;
+    private ILogic logic;
     double xBurrow=0;
     double checkBurr=0;
     public static int sceneManager=0;
     private static final MenuScene menu=new MenuScene();
     public static Scene activeScene;
 
-    public void setLogic(iLogic logic){
+    public void setLogic(ILogic logic){
         this.logic=logic;
     }
 
@@ -32,11 +32,11 @@ public class ViewVariables implements IView {
     }
 
     @Override
-    public void ViewMovement(long now) {
+    public void updateView(long now) {
         setVariables();
         setLifeLost();
         setBonus();
-        GameScene.startMoving(now);
+        GameScene.moveView(now);
         xBurrow=logic.getXBurrow();
         if(xBurrow!=checkBurr){
             setBurrow(xBurrow);

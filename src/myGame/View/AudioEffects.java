@@ -5,18 +5,23 @@ import javafx.scene.media.AudioClip;
 import java.io.File;
 import java.util.*;
 
+import static myGame.View.MenuScene.AUDIO_PATH;
+
+
+
+
 public class AudioEffects {  //fare update delle stringhe
 
-    static String frogSound = new File(MenuScene.AUDIO_PATH + "frog.wav").toURI().toString();
-    static String carPassSound= new File(MenuScene.AUDIO_PATH + "car-pass.wav").toURI().toString();
-    static String splashSound= new File(MenuScene.AUDIO_PATH + "splash.wav").toURI().toString();
-    static String waterSplashSound= new File(MenuScene.AUDIO_PATH + "water-splash.wav").toURI().toString();
-    static String sirenSound= new File(MenuScene.AUDIO_PATH + "siren.wav").toURI().toString();
-    static String hornSound= new File(MenuScene.AUDIO_PATH + "long-horn.wav").toURI().toString();
-    static String jump = new File(MenuScene.AUDIO_PATH + "jump.wav").toURI().toString();
-    static String goal = new File(MenuScene.AUDIO_PATH + "goal.wav").toURI().toString();
-    static String bonusSound = new File(MenuScene.AUDIO_PATH + "bonus.wav").toURI().toString();
-    static String die= new File(MenuScene.AUDIO_PATH + "frog_die.wav").toURI().toString();
+    static String frogSound = new File(AUDIO_PATH + "frog.wav").toURI().toString();
+    static String carPassSound= new File(AUDIO_PATH + "car-pass.wav").toURI().toString();
+    static String splashSound= new File(AUDIO_PATH + "splash.wav").toURI().toString();
+    static String waterSplashSound= new File(AUDIO_PATH + "water-splash.wav").toURI().toString();
+    static String sirenSound= new File(AUDIO_PATH + "siren.wav").toURI().toString();
+    static String hornSound= new File(AUDIO_PATH + "long-horn.wav").toURI().toString();
+    static String jump = new File(AUDIO_PATH + "jump.wav").toURI().toString();
+    static String goal = new File(AUDIO_PATH + "goal.wav").toURI().toString();
+    static String bonusSound = new File(AUDIO_PATH + "bonus.wav").toURI().toString();
+    static String die= new File(AUDIO_PATH + "frog_die.wav").toURI().toString();
     public final static AudioClip bonus = new AudioClip(bonusSound);
     public final static AudioClip frogJump = new AudioClip(jump);
     public final static AudioClip frogGoal = new AudioClip(goal);

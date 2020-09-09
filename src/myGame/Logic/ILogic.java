@@ -1,8 +1,8 @@
 package myGame.Logic;
 
-public interface  iLogic {
+public interface ILogic {
 
-     void LogicMovement(long now);
+     void updateLogic(long now);
 
      double[] getVariables();
 

@@ -1,16 +1,10 @@
 package myGame.Logic;
 
 
-import javafx.scene.paint.Color;
-
-
-
 public class LogicTurtle extends LogicEntities{
+
     private final double speed;
-
-
     boolean sink = false;
-
 
 
     public LogicTurtle(double xPos, double yPos, double speed) {
@@ -19,15 +13,12 @@ public class LogicTurtle extends LogicEntities{
         setWidth(70);
         setHeight(22.07);
         this.speed = speed;
-        setFill(Color.BLUE);
-
-
-
     }
-    public boolean isWet() {
 
+    public boolean isWet() {
         return sink;
     }
+
     public double getSpeed(){
         return this.speed;
     }
@@ -53,8 +44,6 @@ public class LogicTurtle extends LogicEntities{
             sink=false;
         else if ((now/3/ 900000000 +((int)this.getY()/100) )% 3== 2)
             sink=false;
-
-
 
     }
 }

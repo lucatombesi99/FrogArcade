@@ -3,7 +3,6 @@ package myGame.Logic;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
 import java.util.List;
 
 public class LogicFrog extends LogicEntities {
@@ -39,15 +38,12 @@ public class LogicFrog extends LogicEntities {
 
 
     public LogicFrog(List<LogicEntities> interceptable,Scene scene) {
-
         setX(135);
         setY(475);
         setWidth(30);
         setHeight(27.857);
-        setFill(Color.BLACK);
         game=scene;
         this.logicEntities =interceptable;
-       // game= ViewVariables.getScene();
         timeLeft=61;
         timeMax=61;
         froggerLives=5;
@@ -58,8 +54,6 @@ public class LogicFrog extends LogicEntities {
         diffMult=difficulty+5;
         froggerLives-=difficulty;
         timeLeft-=difficulty;
-       // lifeLost= ViewVariables.isLifeLost();
-
 
     }
 
@@ -80,8 +74,7 @@ public class LogicFrog extends LogicEntities {
         allVar[4]=position;
         allVar[5]=getX();
         allVar[6]=getY();
-       // ViewVariables.setVariables(allVar);
-        //ViewVariables.setLifeLost(lifeLost);
+
 
         //morte causata dalla rana che è uscita dalla mappa
         if(getX()<0 || getX()>340 || getY()>505){
@@ -110,8 +103,8 @@ public class LogicFrog extends LogicEntities {
             isDeath = false;
             if(getY()==475 && getX()==135)
                 isAFK=true;
-            isDeath = Death.carDeath(now, this);
 
+            isDeath = Death.carDeath(now, this);
             timeLeft=timeMax;
 
 
@@ -186,7 +179,6 @@ public class LogicFrog extends LogicEntities {
                     this.setX(135);
                     this.setY(475);
                     b.setFrogEnd();
-                    //ViewVariables.setBurrow(b.getX());
                     LogicVariables.xBurrow=b.getX();
                     burrowCounter++;
                     points+=800*diffMult;

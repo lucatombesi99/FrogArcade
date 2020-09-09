@@ -33,8 +33,8 @@ public class FileManagment {
                     new InputStreamReader(
                             new FileInputStream(fileName), charset));
 
-            lstRows = new LinkedList<String[]>();
-            String s = null;
+            lstRows = new LinkedList<>();
+            String s=null;
 
             while ((s = buffRead.readLine()) != null)
                 if (!s.isEmpty() && s.contains(";"))

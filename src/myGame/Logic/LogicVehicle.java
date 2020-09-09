@@ -1,10 +1,6 @@
 package myGame.Logic;
 
 
-import javafx.scene.paint.Color;
-
-
-
 public class LogicVehicle extends LogicEntities {
     double speed;
 
@@ -12,7 +8,6 @@ public class LogicVehicle extends LogicEntities {
 
         setX(xPos);
         setY(yPos);
-        setFill(Color.PINK);
         this.speed= speed;
 
         if(type==1){
@@ -25,12 +20,9 @@ public class LogicVehicle extends LogicEntities {
         }else{
             setWidth(90);
             setHeight(16.847);
-
         }
 
-
     }
-
 
     @Override
     public void movement(Long now) {
